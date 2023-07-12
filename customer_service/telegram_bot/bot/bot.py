@@ -1,9 +1,9 @@
-from bot.config import CHAT_ID, MESSAGE_TEMPLATE, TEST_API_KEY
+from bot.config import CHAT_ID, MESSAGE_TEMPLATE
 from datetime import datetime
 from os import environ
 import aiohttp
 
-REQUEST = f"https://api.telegram.org/bot{environ.get('TG_BOT_API_KEY', TEST_API_KEY)}/sendMessage"
+REQUEST = f"https://api.telegram.org/bot{environ.get('TG_BOT_API_KEY')}/sendMessage"
 
 
 async def send_notification(order):
