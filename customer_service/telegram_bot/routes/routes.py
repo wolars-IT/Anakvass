@@ -1,13 +1,11 @@
 from fastapi import APIRouter, Request
-import bot
+from bot.bot import send_notification
 
 router = APIRouter()
 
 
 # order: {full_name, email, phone_number, address, box_count, comment}
 @router.post("/")
-async def read_order(request: Request):
-    body = await request.json()
-    await bot.send_notification(body)
-    return {"status": 200}
-
+async def read_order(order: Request):
+    order = await order.json()
+    return await send_notification(order)

@@ -1,3 +1,4 @@
+TEST_API_KEY = ""
 CHAT_ID = ""
 MESSAGE_TEMPLATE = '''✅ {time} Нове замовлення на {box_count} ящиків.
 🧑 ПІБ: {full_name}
