@@ -3,16 +3,16 @@ from fastapi import APIRouter, status
 router = APIRouter(prefix="/auth")
 
 
-@router.post("/login", status_code=status.HTTP_200_OK)
+@router.post("/login")
 async def login():
     pass
 
 
-@router.post("/logout", status_code=status.HTTP_200_OK)
+@router.post("/logout")
 async def logout():
     pass
 
 
-@router.get("/current_user", status_code=status.HTTP_200_OK)
+@router.get("/current_user")
 async def read_current_user():
     pass

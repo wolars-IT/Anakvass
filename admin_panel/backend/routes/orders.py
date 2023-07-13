@@ -4,12 +4,12 @@ from fastapi import APIRouter, status
 router = APIRouter(prefix="/orders")
 
 
-@router.get("/", status_code=status.HTTP_200_OK)
+@router.get("/")
 async def read_orders(offset: int = 0, limit: int = 5):
     pass
 
 
-@router.get("/{order_id}", status_code=status.HTTP_200_OK)
+@router.get("/{order_id}")
 async def read_order(order_id):
     pass
 
