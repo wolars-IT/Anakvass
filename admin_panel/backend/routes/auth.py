@@ -1,4 +1,6 @@
-from fastapi import APIRouter, status
+from fastapi import APIRouter, Depends
+from services.repos import AdminRepo
+from services.dependencies import get_admin_repo
 
 router = APIRouter(prefix="/auth")
 
@@ -14,5 +16,5 @@ async def logout():
 
 
 @router.get("/current_user")
-async def read_current_user():
+async def read_current_user(admin_repo: AdminRepo = Depends(get_admin_repo)):
     pass
