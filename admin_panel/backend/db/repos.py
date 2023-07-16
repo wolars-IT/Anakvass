@@ -1,5 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from schemas.admin import Admin
+from models import models
+from schemas.admin import Admin, AdminCreate
 
 
 class BaseRepo:
@@ -8,8 +9,8 @@ class BaseRepo:
 
 
 class AdminRepo(BaseRepo):
-    async def add(self, admin: Admin) -> None:
-        self.session.add(admin)
+    async def add(self, admin: AdminCreate) -> None:
+        self.session.add(models.Admin(**admin.model_dump()))
 
     async def get(self, admin_id: int):
         pass
