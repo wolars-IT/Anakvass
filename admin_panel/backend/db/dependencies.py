@@ -3,12 +3,22 @@ from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from db.database import async_session
-from services.repos import AdminRepo
+from db.repos import BaseRepo, AdminRepo
 
 
 async def get_session() -> AsyncGenerator[AsyncSession, None]:
     async with async_session() as session:
         yield session
+
+
+class Repo:
+    def __init__(self, repo: type[BaseRepo]):
+        self.repo = repo
+
+    def __call__(
+        self, session: AsyncSession = Depends(get_session)
+    ) -> BaseRepo:
+        return self.repo(session)
 
 
 async def get_admin_repo(
