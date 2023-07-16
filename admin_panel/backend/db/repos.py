@@ -8,8 +8,8 @@ class BaseRepo:
 
 
 class AdminRepo(BaseRepo):
-    async def add(self, admin: Admin):
-        pass
+    async def add(self, admin: Admin) -> None:
+        self.session.add(admin)
 
     async def get(self, admin_id: int):
         pass
