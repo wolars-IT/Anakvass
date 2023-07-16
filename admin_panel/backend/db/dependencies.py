@@ -19,9 +19,3 @@ class Repo:
         self, session: AsyncSession = Depends(get_session)
     ) -> BaseRepo:
         return self.repo(session)
-
-
-async def get_admin_repo(
-    session: AsyncSession = Depends(get_session)
-) -> AdminRepo:
-    return AdminRepo(session)
