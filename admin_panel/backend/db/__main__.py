@@ -2,7 +2,7 @@ import sys
 import asyncio
 
 from models.models import Base
-from schemas.admin import AdminCreate
+from schemas.admin import AdminCreateSchema
 
 from db.database import engine, async_session
 from db.repos import AdminRepo
@@ -22,7 +22,7 @@ async def create_admin():
 
     async with async_session() as session:
         admin_repo = AdminRepo(session)
-        await admin_repo.add(AdminCreate(
+        await admin_repo.add(AdminCreateSchema(
             username=admin_username,
             password=admin_password
         ))
