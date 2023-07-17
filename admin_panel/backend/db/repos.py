@@ -1,4 +1,5 @@
 from passlib.context import CryptContext
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from models.models import Admin
@@ -24,3 +25,7 @@ class AdminRepo(BaseRepo):
 
     async def get(self, admin_id: int) -> Admin | None:
         return await self.session.get(Admin, admin_id)
+
+    async def get_by_username(self, admin_username: str) -> Admin | None:
+        stmt = select(Admin).where(Admin.username == admin_username)
+        return await self.session.scalar(stmt)
