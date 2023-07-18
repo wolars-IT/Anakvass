@@ -4,7 +4,8 @@ from db.repos import AdminRepo
 from db.dependencies import Repo
 from schemas.admin import AdminSchema, AdminLoginSchema
 
-from services.auth import auth_admin, get_current_admin
+from services.auth import AuthService
+from services.dependencies import AdminService
 
 router = APIRouter(prefix="/auth")
 
@@ -12,13 +13,10 @@ router = APIRouter(prefix="/auth")
 @router.post("/login")
 async def login(
     admin_login_data: AdminLoginSchema,
-    admin_repo: AdminRepo = Depends(Repo(AdminRepo))
+    auth_service: AuthService = Depends(AdminService(AuthService))
 ):
-    admin = await admin_repo.get_by_username(admin_login_data.username)
-
-    if admin is None or not await auth_admin(
-        admin_login_data.password, admin.password
-    ):
+    admin = await auth_service.authenticate(admin_login_data)
+    if admin is None:
         raise HTTPException(
             status_code=403, detail="Wrong username or password"
         )

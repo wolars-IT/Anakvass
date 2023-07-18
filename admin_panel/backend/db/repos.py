@@ -11,11 +11,15 @@ class BaseRepo:
         self.session = session
 
 
-class AdminRepo(BaseRepo):
-    async def add(self, admin: AdminCreateSchema) -> None:
-        crypt_context = CryptContext(schemes=["argon2"])
-        hashed_password = crypt_context.hash(admin.password, scheme="argon2")
+class BaseUserRepo(BaseRepo):
+    def __init__(self, session: AsyncSession):
+        super().__init__(session)
+        self.hash_manager = CryptContext(schemes=["argon2"])
 
+
+class AdminRepo(BaseUserRepo):
+    async def add(self, admin: AdminCreateSchema) -> None:
+        hashed_password = self.hash_manager.hash(admin.password)
         self.session.add(Admin(
             username=admin.username,
             password=hashed_password,

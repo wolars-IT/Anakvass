@@ -1,32 +1,43 @@
-from passlib.context import CryptContext
 from fastapi import Depends
 
 from db.repos import AdminRepo
 from db.dependencies import Repo
-from schemas.admin import AdminSchema, AdminLoginSchema
+
+from schemas.admin import AdminLoginSchema
 from models.models import Admin
 
-
-async def auth_admin(
-    password: str,
-    password_hash: str
-) -> bool:
-    crypt_context = CryptContext(schemes=["argon2"])
-    return crypt_context.verify(password, password_hash)
+from services.base import BaseAdminService
 
 
-async def get_current_admin(
-    admin_repo: AdminRepo = Depends(Repo(AdminRepo))
-) -> AdminSchema:
-    """Returns current authenticated admin.
-    Can be used by middlewares and routes.
-    """
-    session = _get_current_session()
+class AuthService(BaseAdminService):
+    async def authenticate(
+        self, admin_login_data: AdminLoginSchema
+    ) -> Admin | None:
+        """Verifies admin password, saves admin session in the database"""
+        admin = await self.repo.get_by_username(admin_login_data.username)
 
+        if admin is None:
+            return None
+        if not self.repo.hash_manager.verify(
+            admin_login_data.password, admin.password
+        ):
+            return None
 
-async def set_current_session():
-    pass
+        return admin
 
+    async def login(self):
+        """Sets session of the authenticated admin, adds it to the headers"""
 
-async def _get_current_session():
-    """Returns object that contains admin_id"""
+    async def get_current_admin(
+        self, admin_repo: AdminRepo = Depends(Repo(AdminRepo))
+    ) -> Admin:
+        """Returns current authenticated admin.
+        Can be used by middlewares and routes.
+        """
+        session = self._get_current_session()
+
+    async def _set_current_session(self):
+        pass
+
+    async def _get_current_session(self):
+        """Returns object that contains admin_id"""
