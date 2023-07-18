@@ -1,3 +1,5 @@
+from typing import Optional
+
 from datetime import datetime
 from pydantic import BaseModel, constr
 
@@ -5,7 +7,7 @@ from pydantic import BaseModel, constr
 class AdminSchema(BaseModel):
     id: int
     username: constr(max_length=25)
-    last_login: datetime
+    last_login: Optional[datetime]
     created_at: datetime
 
 
