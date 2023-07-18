@@ -2,21 +2,18 @@ from datetime import datetime
 from pydantic import BaseModel, constr
 
 
-class AdminBaseSchema(BaseModel):
-    username: constr(max_length=25)
-
-
-class AdminSchema(AdminBaseSchema):
+class AdminSchema(BaseModel):
     id: int
+    username: constr(max_length=25)
     last_login: datetime
     created_at: datetime
 
 
-class AdminCreateSchema(AdminBaseSchema):
+class AdminCreateSchema(BaseModel):
+    username: constr(max_length=25)
     password: constr(max_length=200)
-    last_login: datetime = datetime.now()
-    created_at: datetime = datetime.now()
 
 
-class AdminLoginSchema(AdminBaseSchema):
+class AdminLoginSchema(BaseModel):
+    username: constr(max_length=25)
     password: constr(max_length=200)

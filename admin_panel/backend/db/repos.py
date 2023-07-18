@@ -19,8 +19,6 @@ class AdminRepo(BaseRepo):
         self.session.add(Admin(
             username=admin.username,
             password=hashed_password,
-            last_login=admin.last_login,
-            created_at=admin.created_at
         ))
 
     async def get(self, admin_id: int) -> Admin | None:
