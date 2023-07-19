@@ -4,8 +4,6 @@ from services.base import BaseAdminService
 from db.repos import AdminRepo
 from db.dependencies import Repo
 
-from services.base import BaseAdminService
-
 
 class AdminService:
     def __init__(self, service: type[BaseAdminService]):
