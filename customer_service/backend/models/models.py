@@ -20,5 +20,5 @@ class Order(Base):
     phone_number: Mapped[str] = mapped_column(String(15), nullable=False)
     address: Mapped[str]      = mapped_column(String(425), nullable=False)
     box_count: Mapped[str]    = mapped_column(INTEGER(unsigned=True), nullable=False)
-    comment: Mapped[str]      = mapped_column(String(), nullable=True)
+    comment: Mapped[str]      = mapped_column(String(255), nullable=True)
     status: Mapped[Statuses]  = mapped_column(Enum(Statuses), nullable=False)
