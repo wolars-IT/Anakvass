@@ -22,7 +22,7 @@ class Order(BaseModel):
     phone_number: constr(min_length=6, max_length=15)
     address: constr(min_length=12, max_length=425)
     box_count: conint(gt=0, lt=(2**32))
-    comment: constr(min_length=1, max_length=255)
+    comment: constr(min_length=1, max_length=255) | None
 
     @field_validator("full_name")
     def full_name_validator(cls, value):
@@ -58,4 +58,4 @@ class Order(BaseModel):
 
     @field_validator("comment")
     def comment_validator(cls, value):
-        return value.strip()
+        return None if value is None else value.strip()
