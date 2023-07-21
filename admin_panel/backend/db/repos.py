@@ -2,17 +2,20 @@ from passlib.context import CryptContext
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from fastapi import Depends
+from db.dependencies import get_session
+
 from models.models import Admin
 from schemas.admin import AdminCreateSchema
 
 
 class BaseRepo:
-    def __init__(self, session: AsyncSession):
+    def __init__(self, session: AsyncSession = Depends(get_session)):
         self.session = session
 
 
 class BaseUserRepo(BaseRepo):
-    def __init__(self, session: AsyncSession):
+    def __init__(self, session: AsyncSession = Depends(get_session)):
         super().__init__(session)
         self.hash_manager = CryptContext(schemes=["argon2"])
 
