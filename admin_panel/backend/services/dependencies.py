@@ -1,15 +1,14 @@
-from fastapi import Depends
-from services.base import BaseAdminService
+from typing import AsyncGenerator
+from os import environ
 
-from db.repos import AdminRepo
-from db.dependencies import Repo
+import redis.asyncio as redis
+from redis.asyncio.client import Redis
 
 
-class AdminService:
-    def __init__(self, service: type[BaseAdminService]):
-        self.service = service
+REDIS_URL = environ["REDIS_URL"]
 
-    def __call__(
-        self, repo: AdminRepo = Depends(Repo(AdminRepo))
-    ) -> BaseAdminService:
-        return self.service(repo)
+
+async def get_redis() -> AsyncGenerator[Redis, None]:
+    connection = await redis.from_url(REDIS_URL)
+    yield connection
+    await connection.close()
