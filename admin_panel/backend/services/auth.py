@@ -2,7 +2,10 @@ import secrets
 from settings import settings
 
 from redis.asyncio.client import Redis
-from fastapi import Depends, Request, Response
+from fastapi import (
+    Depends, HTTPException,
+    Request, Response
+)
 
 from db.repos import AdminRepo
 
@@ -56,16 +59,18 @@ class AuthService(BaseAdminService):
             await self.redis.delete(session_token)
             response.delete_cookie(self.cookie_name)
 
-    async def get_current_admin(self, request: Request) -> Admin | None:
-        """Returns current authenticated admin.
-        Can be used by middlewares and routes.
-        """
+    async def get_current_admin(self, request: Request) -> Admin:
+        """Returns current authenticated admin"""
         session_token = request.cookies.get(self.cookie_name)
         if session_token is None:
-            return None
+            raise HTTPException(
+                status_code=403, detail="Access denied"
+            )
 
         admin_id = await self.redis.get(session_token)
         if admin_id is None:
-            return None
+            raise HTTPException(
+                status_code=403, detail="Access denied"
+            )
 
         return await self.repo.get(admin_id)

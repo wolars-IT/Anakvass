@@ -38,10 +38,4 @@ async def read_current_user(
     request: Request,
     auth_service: AuthService = Depends(AuthService)
 ) -> AdminSchema:
-    admin = await auth_service.get_current_admin(request)
-
-    if admin is None:
-        raise HTTPException(
-            status_code=403, detail="Access denied"
-        )
-    return admin
+    return await auth_service.get_current_admin(request)
