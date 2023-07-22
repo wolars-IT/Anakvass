@@ -1,2 +1,134 @@
 @import "./variables"
 
+body
+  background: $background
+
+#nav
+  display: flex
+  justify-content: center
+  align-items: flex-start
+  gap: 48px
+  margin: 50px auto 0
+  .nav_item
+    color: $textgrey
+    font-family: Montserrat
+    font-size: 17px
+    font-style: normal
+    font-weight: 600
+    line-height: normal
+    cursor: pointer
+  .nav_item:hover
+    color: $yellow
+  .nav_item.active
+    color: $yellow
+    text-decoration: wavy underline
+    text-underline-offset: 4px
+
+#language_switch
+  position: absolute
+  top: 45px
+  right: 100px
+  width: 52px
+  height: 22.75px
+  border-radius: 19.5px
+  display: flex
+  overflow: hidden
+  .switch_half
+    width: 26px
+    display: flex
+    align-items: center
+
+    font-family: Montserrat
+    font-size: 9.75px
+    font-style: normal
+    font-weight: 600
+    line-height: normal
+
+    cursor: pointer
+    &:hover
+      opacity: 0.8
+  .left_half
+    background: $darkyellow
+    color: $yellow
+    padding-left: 5.85px
+  .right_half
+    background: $yellow
+    color: $white
+    padding-left: 4.55px
+
+#main
+  width: 896px
+  margin: 0 auto
+  position: relative
+#main #header
+  color: $yellow
+  font-family: Impact
+  font-size: 266.551px
+  font-style: normal
+  font-weight: 400
+  line-height: normal
+  letter-spacing: -9.329px
+#main #header_caption
+  color: $textgrey
+  font-family: Montserrat
+  font-size: 17px
+  font-style: normal
+  font-weight: 500
+  line-height: 127%
+  letter-spacing: 0.17px
+  width: 316px
+  margin-bottom: 29px
+#main #order
+  display: flex
+  .order_wrapper
+    display: flex
+    cursor: pointer
+  .order_wrapper:hover
+    opacity: 0.8
+  .order_button
+    @include flex_center
+
+    width: 180px
+    height: 48px
+    flex-shrink: 0
+    border-radius: 50px
+    background: $yellow
+
+    color: $white
+    font-family: Montserrat
+    font-size: 17px
+    font-style: normal
+    font-weight: 800
+    line-height: normal
+    text-transform: uppercase
+  .order_arrow
+    @include flex_center
+
+    width: 48px
+    height: 48px
+    flex-shrink: 0
+    border: 3px solid $yellow
+    border-radius: 50%
+#main #bottle_wrapper
+  @include flex_center
+  
+  top: -25px
+  position: absolute
+  left: 0
+  right: 0
+  margin: 0 auto
+  pointer-events: none
+  #bottle_top
+    width: 598.125px
+    height: 598.125px
+    transform: rotate(8.508deg)
+    flex-shrink: 0
+
+
+#spiral_top
+  position: absolute
+  top: 0
+#spiral_right
+  position: absolute
+  top: 240px
+  right: 0
