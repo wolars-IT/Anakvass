@@ -1,7 +1,13 @@
+from fastapi import Depends
+
+from db.repos import CustomerRepo
 from schemas.order import Order as OrderSchema
 from models.order import Order as OrderModel
 
-from services.base import BaseCustomerService
+
+class BaseCustomerService:
+    def __init__(self, repo: CustomerRepo = Depends(CustomerRepo)):
+        self.repo = repo
 
 
 class Customer(BaseCustomerService):

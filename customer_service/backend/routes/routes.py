@@ -1,11 +1,8 @@
-from fastapi import APIRouter
-from fastapi import Depends
-
+from fastapi import APIRouter, Depends
 from typing_extensions import TypedDict
-
 from schemas.order import Order
-
 from services.customer import Customer
+
 
 router = APIRouter()
 
@@ -14,6 +11,6 @@ router = APIRouter()
 async def create_order(
         order: Order,
         customer: Customer = Depends(Customer)
-) -> TypedDict("order_id", {"id": int}):
+) -> TypedDict("Order ID", {"order_id": int}):
     order_id = await customer.send_order(order)
-    return {"id": order_id}
+    return {"order_id": order_id}
