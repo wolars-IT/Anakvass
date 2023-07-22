@@ -1,4 +1,3 @@
-from os import getenv
 from fastapi import (
     APIRouter, Depends, HTTPException,
     Request, Response
@@ -6,9 +5,6 @@ from fastapi import (
 
 from schemas.admin import AdminSchema, AdminLoginSchema
 from services.auth import AuthService
-
-COOKIE_NAME = getenv("COOKIE_NAME", "sessionid")
-COOKIE_AGE = getenv("COOKIE_AGE", 2592000)
 
 router = APIRouter(prefix="/auth")
 
@@ -25,8 +21,7 @@ async def login(
             status_code=403, detail="Wrong username or password"
         )
 
-    session_token = await auth_service.login(admin)
-    response.set_cookie(COOKIE_NAME, session_token, max_age=COOKIE_AGE)
+    await auth_service.login(admin, response)
 
 
 @router.post("/logout")
@@ -35,9 +30,7 @@ async def logout(
     response: Response,
     auth_service: AuthService = Depends(AuthService)
 ):
-    session_token = request.cookies.get(COOKIE_NAME)
-    await auth_service.logout(session_token)
-    response.delete_cookie(COOKIE_NAME)
+    await auth_service.logout(request, response)
 
 
 @router.get("/current_user")
@@ -45,8 +38,7 @@ async def read_current_user(
     request: Request,
     auth_service: AuthService = Depends(AuthService)
 ) -> AdminSchema:
-    session_token = request.cookies.get(COOKIE_NAME)
-    admin = await auth_service.get_current_admin(session_token)
+    admin = await auth_service.get_current_admin(request)
 
     if admin is None:
         raise HTTPException(

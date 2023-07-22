@@ -2,7 +2,7 @@ import secrets
 from os import getenv
 
 from redis.asyncio.client import Redis
-from fastapi import Depends
+from fastapi import Depends, Request, Response
 
 from db.repos import AdminRepo
 
@@ -14,6 +14,7 @@ from services.dependencies import get_redis
 
 
 COOKIE_AGE = getenv("COOKIE_AGE", 2592000)
+COOKIE_NAME = getenv("COOKIE_NAME", "sessionid")
 
 
 class AuthService(BaseAdminService):
@@ -24,6 +25,7 @@ class AuthService(BaseAdminService):
     ):
         super().__init__(repo)
         self.redis = redis
+        self.cookie_name = COOKIE_NAME
         self.cookie_age = COOKIE_AGE
 
     async def authenticate(
@@ -41,22 +43,28 @@ class AuthService(BaseAdminService):
 
         return admin
 
-    async def login(self, admin: Admin) -> str:
-        """Saves session in the database, returns session token"""
+    async def login(self, admin: Admin, response: Response) -> None:
+        """Saves session in the database, sets cookies"""
         session_token = secrets.token_urlsafe()
         await self.redis.set(session_token, admin.id, ex=self.cookie_age)
-        return session_token
+        response.set_cookie(
+            self.cookie_name,
+            session_token,
+            max_age=self.cookie_age
+        )
 
-    async def logout(self, session_token: str) -> None:
+    async def logout(self, request: Request, response: Response) -> None:
+        session_token = request.cookies.get(self.cookie_name)
+
         if session_token is not None:
             await self.redis.delete(session_token)
+            response.delete_cookie(self.cookie_name)
 
-    async def get_current_admin(
-        self, session_token: str | None
-    ) -> Admin | None:
+    async def get_current_admin(self, request: Request) -> Admin | None:
         """Returns current authenticated admin.
         Can be used by middlewares and routes.
         """
+        session_token = request.cookies.get(self.cookie_name)
         if session_token is None:
             return None
 
