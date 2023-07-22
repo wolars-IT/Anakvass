@@ -1,14 +1,11 @@
 from typing import AsyncGenerator
-from os import environ
+from settings import settings
 
 import redis.asyncio as redis
 from redis.asyncio.client import Redis
 
 
-REDIS_URL = environ["REDIS_URL"]
-
-
 async def get_redis() -> AsyncGenerator[Redis, None]:
-    connection = await redis.from_url(REDIS_URL)
+    connection = await redis.from_url(settings.redis_url)
     yield connection
     await connection.close()

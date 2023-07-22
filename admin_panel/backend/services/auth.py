@@ -1,5 +1,5 @@
 import secrets
-from os import getenv
+from settings import settings
 
 from redis.asyncio.client import Redis
 from fastapi import Depends, Request, Response
@@ -13,10 +13,6 @@ from services.base import BaseAdminService
 from services.dependencies import get_redis
 
 
-COOKIE_AGE = getenv("COOKIE_AGE", 2592000)
-COOKIE_NAME = getenv("COOKIE_NAME", "sessionid")
-
-
 class AuthService(BaseAdminService):
     def __init__(
         self,
@@ -25,8 +21,8 @@ class AuthService(BaseAdminService):
     ):
         super().__init__(repo)
         self.redis = redis
-        self.cookie_name = COOKIE_NAME
-        self.cookie_age = COOKIE_AGE
+        self.cookie_name = settings.cookie_name
+        self.cookie_age = settings.cookie_age
 
     async def authenticate(
         self, admin_login_data: AdminLoginSchema
