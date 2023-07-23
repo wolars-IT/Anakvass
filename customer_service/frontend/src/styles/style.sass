@@ -117,8 +117,8 @@ body
   width: 532px
 
 #quality
-  margin-left: 360px
   position: relative
+  margin-left: 360px
   height: 600px
 #quality #bottle_middle
   position: absolute
@@ -129,11 +129,11 @@ body
   transform: rotate(8.508deg)
   pointer-events: none
 #quality .card
+  position: absolute
   display: flex
   flex-direction: column
   width: 291.336px
   height: 195.741px
-  // transform: rotte(9.173deg)
   padding: 40.192px 13.656px 39.282px 12.746px
   justify-content: center
   align-items: center
@@ -157,6 +157,13 @@ body
     font-style: normal
     font-weight: 500
     line-height: normal
+#quality
+  #card1
+    transform: rotate(9.173deg)
+  #card2
+  #card3
+  #card4
+  #card5
 
 #order
   position: relative
@@ -173,6 +180,7 @@ body
   flex-direction: column
   row-gap: 35px
 #order .order_input
+  color: $midgrey
   width: 438px
   height: 50px
   padding: 15px
@@ -259,3 +267,8 @@ body
   position: absolute
   top: 240px
   right: 0
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button 
+  -webkit-appearance: none
+  margin: 0

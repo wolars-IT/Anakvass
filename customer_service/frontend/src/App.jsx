@@ -4,6 +4,10 @@ import spiral from "./svg/spiral.svg";
 import spiralbottom from "./svg/spiralbottom.svg";
 import arrowdown from "./svg/arrowdown.svg";
 import bottle from "./img/bottle.png"
+import schield from "./svg/schield.svg";
+import temperature from "./svg/temperature.svg";
+import plant from "./svg/plant.svg";
+import bubbles from "./svg/bubbles.svg";
 
 function App() {
   const navigation = [
@@ -61,7 +65,28 @@ function App() {
       </section>
       <section id="quality">
         <img src={bottle} id="bottle_middle"/>
-        <div className="card">
+        <div className="card" id="card1">
+          <img src={bubbles}/>
+          <div className="title">Справжні бульбашки</div>
+          <div className="text">Ніякого штучкого вуглекислого газу, лише природній ефект.</div>
+        </div>
+        <div className="card" id="card2">
+          <img src={schield}/>
+          <div className="title">Непастиризований</div>
+          <div className="text">Без жодної термообробки, щоб зберегти усі найкорисніші мікроорганізми.</div>
+        </div>
+        <div className="card" id="card3">
+          <img src={temperature}/>
+          <div className="title">Пробіотичні властивостi</div>
+          <div className="text">Містить пробіотики, такі як Lactobacillus та інші корисні бактерії, які сприяють здоров'ю шлунково-кишкового тракту</div>
+        </div>
+        <div className="card" id="card4">
+          <img src={plant}/>
+          <div className="title">Натуральні ананаси</div>
+          <div className="text">Лише елітний сорт південноамериканських ананасів.</div>
+        </div>
+        <div className="card" id="card5">
+          <img src={bubbles}/>
           <div className="title">Справжні бульбашки</div>
           <div className="text">Ніякого штучкого вуглекислого газу, лише природній ефект.</div>
         </div>
@@ -73,7 +98,7 @@ function App() {
             <input type="text" placeholder="Ім’я та прізвище" className="order_input"/>
             <input type="text" placeholder="Емейл або номер телефону" className="order_input"/>
             <input type="text" placeholder="Адреса (країна, місто, PLZ, вулиця й дім)" className="order_input"/>
-            <input type="text" placeholder="Кількість ящиків" className="order_input"/>
+            <input type="number" placeholder="Кількість ящиків" className="order_input"/>
           </form>
           <div className="order_button">
             <div className="order_text">Замовити</div>
