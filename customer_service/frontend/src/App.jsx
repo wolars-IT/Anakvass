@@ -34,7 +34,7 @@ function App() {
       <nav id="nav">
         {navigationList}
       </nav>
-      <section id="main">
+      <header id="main">
         <div id="bottle_wrapper">
           <img src={bottle} id="bottle_top"/>
         </div>
@@ -49,7 +49,7 @@ function App() {
             <img src={arrowdown}/>
           </div>
         </div>
-      </section>
+      </header>
       <section id="story">
         <div className="header">
           Історія
@@ -67,23 +67,29 @@ function App() {
         </div>
       </section>
       <section id="order">
-        <div className="header">Замовлення</div>
-        <form action="" id="order_form">
-          <input type="text" placeholder="Ім’я та прізвище" className="order_input"/>
-          <input type="text" placeholder="Емейл або номер телефону" className="order_input"/>
-          <input type="text" placeholder="Адреса (країна, місто, PLZ, вулиця й дім)" className="order_input"/>
-          <input type="text" placeholder="Кількість ящиків" className="order_input"/>
-        </form>
-        <div className="order_button">
-          <div className="order_text">Замовити</div>
-          <div className="order_arrow">
-            <img src={arrowdown}/>
+        <div className="content">
+          <div className="header">Замовлення</div>
+          <form action="" id="order_form">
+            <input type="text" placeholder="Ім’я та прізвище" className="order_input"/>
+            <input type="text" placeholder="Емейл або номер телефону" className="order_input"/>
+            <input type="text" placeholder="Адреса (країна, місто, PLZ, вулиця й дім)" className="order_input"/>
+            <input type="text" placeholder="Кількість ящиків" className="order_input"/>
+          </form>
+          <div className="order_button">
+            <div className="order_text">Замовити</div>
+            <div className="order_arrow">
+              <img src={arrowdown}/>
+            </div>
           </div>
+
+          <img src={bottle} id="bottle_bottom"/>
         </div>
 
         <img src={spiralbottom} id="spiral_bottom"/>
-        <img src={bottle} id="bottle_bottom"/>
       </section>
+      <footer id="footer">
+        ©Wolars.it, 2023 
+      </footer>
     </>
   );
 }
