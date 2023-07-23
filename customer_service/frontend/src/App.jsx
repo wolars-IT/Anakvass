@@ -3,6 +3,7 @@ import spiraltop from "./svg/spiraltop.svg";
 import spiralright from "./svg/spiralright.svg";
 import spiral from "./svg/spiral.svg";
 import spiralbottom from "./svg/spiralbottom.svg";
+import spiralcenter from "./svg/spiralcenter.svg";
 import arrowdown from "./svg/arrowdown.svg";
 import bottle from "./img/bottle.png"
 import schield from "./svg/schield.svg";
@@ -87,6 +88,8 @@ function App() {
       </section>
       <section id="quality">
         <img src={bottle} id="bottle_middle"/>
+        <img src={spiralcenter} id="spiral_center"/>
+
         <div className="card" id="card1">
           <img src={bubbles}/>
           <div className="title">Справжні бульбашки</div>
