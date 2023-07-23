@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import spiraltop from "./svg/spiraltop.svg";
 import spiralright from "./svg/spiralright.svg";
 import spiral from "./svg/spiral.svg";
@@ -10,16 +11,37 @@ import plant from "./svg/plant.svg";
 import bubbles from "./svg/bubbles.svg";
 
 function App() {
-  const navigation = [
+  const [navigation, setNavigation] = useState([
     { name: "Головна", isActive: true },
     { name: "Історія", isActive: false },
     { name: "Якість", isActive: false },
     { name: "Склад", isActive: false },
     { name: "Замовити", isActive: false },
-  ];
+  ]);
+
+  function updateNavigation (name) {
+    const nextNavigation = navigation.map((item) => {
+      if (item.name == name) {
+        return {
+          ...item,
+          isActive: true
+        }
+      } 
+      return {
+        ...item,
+        isActive: false
+      }    
+    })
+    setNavigation(nextNavigation)
+  }
+
   const navigationList = navigation.map((item) => {
     return (
-      <button className={"nav_item " + (item.isActive ? "active" : "")}>
+      <button 
+        key={item.name}
+        className={"nav_item " + (item.isActive ? "active" : "")}
+        onClick={() => updateNavigation(item.name)}
+      >
         {item.name}
       </button>
     )
