@@ -1,6 +1,7 @@
 import spiraltop from "./svg/spiraltop.svg";
 import spiralright from "./svg/spiralright.svg";
 import spiral from "./svg/spiral.svg";
+import spiralbottom from "./svg/spiralbottom.svg";
 import arrowdown from "./svg/arrowdown.svg";
 import bottle from "./img/bottle.png"
 
@@ -42,11 +43,11 @@ function App() {
         <div id="main_header_caption">
           Інновативний напій натурального бродіння зі смаком ананасу
         </div>
-          <div id="order_button">
-            <div className="order_text">Замовити</div>
-            <div className="order_arrow">
-              <img src={arrowdown}/>
-            </div>
+        <div className="order_button">
+          <div className="order_text">Замовити</div>
+          <div className="order_arrow">
+            <img src={arrowdown}/>
+          </div>
         </div>
       </section>
       <section id="story">
@@ -64,6 +65,24 @@ function App() {
           <div className="title">Справжні бульбашки</div>
           <div className="text">Ніякого штучкого вуглекислого газу, лише природній ефект.</div>
         </div>
+      </section>
+      <section id="order">
+        <div className="header">Замовлення</div>
+        <form action="" id="order_form">
+          <input type="text" placeholder="Ім’я та прізвище" className="order_input"/>
+          <input type="text" placeholder="Емейл або номер телефону" className="order_input"/>
+          <input type="text" placeholder="Адреса (країна, місто, PLZ, вулиця й дім)" className="order_input"/>
+          <input type="text" placeholder="Кількість ящиків" className="order_input"/>
+        </form>
+        <div className="order_button">
+          <div className="order_text">Замовити</div>
+          <div className="order_arrow">
+            <img src={arrowdown}/>
+          </div>
+        </div>
+
+        <img src={spiralbottom} id="spiral_bottom"/>
+        <img src={bottle} id="bottle_bottom"/>
       </section>
     </>
   );
