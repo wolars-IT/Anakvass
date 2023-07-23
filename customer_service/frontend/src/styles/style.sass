@@ -1,6 +1,23 @@
 @import "./variables"
 
+@mixin header
+  color: $yellow
+  font-family: Impact
+  font-size: 120px
+  font-style: normal
+  font-weight: 400
+  line-height: normal
+  text-transform: uppercase
+@mixin header_caption
+  color: $textgrey
+  font-family: Montserrat
+  font-size: 17px
+  font-style: normal
+  font-weight: 500
+  line-height: normal
+
 body
+  margin-bottom: 500px
   background: $background
 
 #nav
@@ -58,9 +75,9 @@ body
 
 #main
   width: 896px
-  margin: 0 auto
+  margin: 0 auto 208px
   position: relative
-#main #header
+#main #main_header
   color: $yellow
   font-family: Impact
   font-size: 266.551px
@@ -68,24 +85,20 @@ body
   font-weight: 400
   line-height: normal
   letter-spacing: -9.329px
-#main #header_caption
-  color: $textgrey
-  font-family: Montserrat
-  font-size: 17px
-  font-style: normal
-  font-weight: 500
+#main #main_header_caption
+  @include header_caption
+
   line-height: 127%
   letter-spacing: 0.17px
   width: 316px
   margin-bottom: 29px
-#main #order
-  display: flex
-  .order_wrapper
-    display: flex
-    cursor: pointer
-  .order_wrapper:hover
+#main #order_button
+  display: inline-flex
+  cursor: pointer
+  margin-right: auto
+  &:hover
     opacity: 0.8
-  .order_button
+  .order_text
     @include flex_center
 
     width: 180px
@@ -111,7 +124,7 @@ body
     border-radius: 50%
 #main #bottle_wrapper
   @include flex_center
-  
+
   top: -25px
   position: absolute
   left: 0
@@ -124,6 +137,18 @@ body
     transform: rotate(8.508deg)
     flex-shrink: 0
 
+#story
+  margin-left: 98px
+  margin-bottom: 121px
+#story #spiral
+  margin-left: 20px
+#story #story_header_caption
+  @include header_caption
+
+  width: 532px
+
+.header
+  @include header
 
 #spiral_top
   position: absolute
