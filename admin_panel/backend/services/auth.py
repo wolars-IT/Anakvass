@@ -69,7 +69,7 @@ class AuthService(BaseAdminService):
             await self.redis.delete(session_token)
             response.delete_cookie(self.cookie_name)
 
-    async def _get_current_admin(self, request: Request) -> Admin | None:
+    async def get_current_admin(self, request: Request) -> Admin | None:
         """Returns current authenticated admin"""
         session_token = request.cookies.get(self.cookie_name)
         if session_token is None:
@@ -86,7 +86,9 @@ async def get_current_admin(
     request: Request,
     auth_service: AuthService = Depends(AuthService)
 ) -> Admin:
-    admin = await auth_service._get_current_admin(request)
+    """Returns current authenticated admin.
+    Raises HTTPException if the user is not an admin."""
+    admin = await auth_service.get_current_admin(request)
     if admin is None or not admin.is_active:
         raise HTTPException(
             status_code=403, detail="Access denied"

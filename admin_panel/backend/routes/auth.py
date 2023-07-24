@@ -12,10 +12,17 @@ router = APIRouter(prefix="/auth")
 
 @router.post("/login")
 async def login(
+    request: Request,
     response: Response,
     admin_login_data: AdminLoginSchema,
     auth_service: AuthService = Depends(AuthService),
 ):
+    current_admin = await auth_service.get_current_admin(request)
+    if current_admin is not None:
+        raise HTTPException(
+            status_code=403, detail="You are already logged in"
+        )
+
     admin = await auth_service.authenticate(admin_login_data)
     if admin is None:
         raise HTTPException(
