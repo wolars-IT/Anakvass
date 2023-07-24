@@ -1,5 +1,6 @@
 import secrets
 from typing import AsyncGenerator
+from datetime import datetime
 from settings import settings
 
 import redis.asyncio as redis
@@ -50,6 +51,9 @@ class AuthService(BaseAdminService):
 
     async def login(self, admin: Admin, response: Response) -> None:
         """Saves session in the database, sets cookies"""
+        await self.repo.update(admin, last_login=datetime.now())
+        await self.repo.session.commit()
+
         session_token = secrets.token_urlsafe()
         await self.redis.set(session_token, admin.id, ex=self.cookie_age)
         response.set_cookie(
