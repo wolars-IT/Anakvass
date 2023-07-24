@@ -87,7 +87,7 @@ async def get_current_admin(
     auth_service: AuthService = Depends(AuthService)
 ) -> Admin:
     admin = await auth_service._get_current_admin(request)
-    if admin is None:
+    if admin is None or not admin.is_active:
         raise HTTPException(
             status_code=403, detail="Access denied"
         )

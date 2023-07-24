@@ -21,6 +21,10 @@ async def login(
         raise HTTPException(
             status_code=403, detail="Wrong username or password"
         )
+    elif not admin.is_active:
+        raise HTTPException(
+            status_code=403, detail="Your account was deactivated"
+        )
 
     await auth_service.login(admin, response)
 
