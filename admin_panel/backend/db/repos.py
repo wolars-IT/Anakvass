@@ -1,7 +1,6 @@
-from datetime import datetime
 from passlib.context import CryptContext
 
-from sqlalchemy import select
+from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import Depends
 
@@ -36,5 +35,6 @@ class AdminRepo(BaseUserRepo):
         stmt = select(Admin).where(Admin.username == admin_username)
         return await self.session.scalar(stmt)
 
-    async def update(self, admin: Admin, last_login: datetime) -> None:
-        admin.last_login = last_login
+    async def update(self, admin: Admin, **kwargs) -> None:
+        stmt = update(Admin).where(Admin.id == admin.id).values(**kwargs)
+        await self.session.execute(stmt)
