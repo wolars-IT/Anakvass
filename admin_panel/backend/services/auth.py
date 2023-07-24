@@ -1,6 +1,8 @@
 import secrets
+from typing import AsyncGenerator
 from settings import settings
 
+import redis.asyncio as redis
 from redis.asyncio.client import Redis
 from fastapi import (
     Depends, HTTPException,
@@ -8,12 +10,16 @@ from fastapi import (
 )
 
 from db.repos import AdminRepo
-
 from schemas.admin import AdminLoginSchema
 from models.models import Admin
 
 from services.base import BaseAdminService
-from services.dependencies import get_redis
+
+
+async def get_redis() -> AsyncGenerator[Redis, None]:
+    connection = await redis.from_url(settings.redis_url)
+    yield connection
+    await connection.close()
 
 
 class AuthService(BaseAdminService):

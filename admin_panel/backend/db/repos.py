@@ -1,10 +1,10 @@
 from passlib.context import CryptContext
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-
 from fastapi import Depends
-from db.dependencies import get_session
 
+from db.database import get_session
 from models.models import Admin
 from schemas.admin import AdminCreateSchema
 
