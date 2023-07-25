@@ -11,7 +11,7 @@ from fastapi import (
 )
 
 from db.repos import AdminRepo
-from schemas.admin import AdminLoginSchema
+from schemas.admin import AdminСredentialsSchema
 from models.models import Admin
 
 
@@ -38,7 +38,7 @@ class AuthService(BaseAdminService):
         self.cookie_age = settings.cookie_age
 
     async def authenticate(
-        self, admin_login_data: AdminLoginSchema
+        self, admin_login_data: AdminСredentialsSchema
     ) -> Admin | None:
         """Verifies admin password"""
         admin = await self.repo.get_by_username(admin_login_data.username)

@@ -4,7 +4,7 @@ from fastapi import (
 )
 
 from models.models import Admin
-from schemas.admin import AdminSchema, AdminLoginSchema
+from schemas.admin import AdminSchema, AdminСredentialsSchema
 from services.auth import AuthService, get_current_admin
 
 router = APIRouter(prefix="/auth")
@@ -14,7 +14,7 @@ router = APIRouter(prefix="/auth")
 async def login(
     request: Request,
     response: Response,
-    admin_login_data: AdminLoginSchema,
+    admin_login_data: AdminСredentialsSchema,
     auth_service: AuthService = Depends(AuthService),
 ):
     current_admin = await auth_service.get_current_admin(request)

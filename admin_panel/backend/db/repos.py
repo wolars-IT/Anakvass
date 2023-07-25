@@ -6,7 +6,7 @@ from fastapi import Depends
 
 from db.database import get_session
 from models.models import Admin
-from schemas.admin import AdminCreateSchema
+from schemas.admin import AdminСredentialsSchema
 
 
 class BaseRepo:
@@ -16,7 +16,7 @@ class BaseRepo:
 
 
 class AdminRepo(BaseRepo):
-    async def add(self, admin: AdminCreateSchema) -> None:
+    async def add(self, admin: AdminСredentialsSchema) -> None:
         hashed_password = self.hash_manager.hash(admin.password)
         self.session.add(Admin(
             username=admin.username,

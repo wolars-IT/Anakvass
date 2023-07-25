@@ -11,11 +11,6 @@ class AdminSchema(BaseModel):
     created_at: datetime
 
 
-class AdminCreateSchema(BaseModel):
-    username: constr(max_length=25)
-    password: constr(max_length=200)
-
-
-class AdminLoginSchema(BaseModel):
+class AdminСredentialsSchema(BaseModel):
     username: constr(max_length=25)
     password: constr(max_length=200)
