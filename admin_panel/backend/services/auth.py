@@ -14,13 +14,16 @@ from db.repos import AdminRepo
 from schemas.admin import AdminLoginSchema
 from models.models import Admin
 
-from services.base import BaseAdminService
-
 
 async def get_redis() -> AsyncGenerator[Redis, None]:
     connection = await redis.from_url(settings.redis_url)
     yield connection
     await connection.close()
+
+
+class BaseAdminService:
+    def __init__(self, repo: AdminRepo):
+        self.repo = repo
 
 
 class AuthService(BaseAdminService):
