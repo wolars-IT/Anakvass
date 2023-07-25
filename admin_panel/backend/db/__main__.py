@@ -16,20 +16,27 @@ async def init_db() -> None:
         await conn.run_sync(Base.metadata.create_all)
 
 
-async def create_admin():
-    admin_username = sys.argv[1]
-    admin_password = sys.argv[2]
-
+async def create_admin(username: str, password: str):
     async with async_session() as session:
         admin_repo = AdminRepo(session)
         await admin_repo.add(AdminCreateSchema(
-            username=admin_username,
-            password=admin_password
+            username=username,
+            password=password
         ))
         await session.commit()
 
 
-if len(sys.argv) == 2 and sys.argv[1] == "init":
-    asyncio.run(init_db())
-else:
-    asyncio.run(create_admin())
+args = sys.argv[1:]  # Remove file name from the arguments
+match args:
+    case ['init']:
+        asyncio.run(init_db())
+    case [username, password]:
+        asyncio.run(create_admin(username, password))
+    case _:
+        print(
+            "Wrong command arguments. Allowed arguments:\n"
+            "init - Initalize database\n"
+            "<username> <password> - Create a new admin "
+            "with the specified credentials\n\n"
+            "Example: python -m db <username> <password>\n"
+        )
