@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react"
 import spiraltop from "./svg/spiraltop.svg";
 import spiralright from "./svg/spiralright.svg";
 import spiral from "./svg/spiral.svg";
@@ -23,6 +23,7 @@ function App() {
   useEffect(() => {
     watchNavbarScroll()
     watchSectionsScroll()
+    watchAnimationsOnScroll()
   }, []);
 
   const navigationList = navigation.map((item) => {
@@ -50,84 +51,85 @@ function App() {
       <nav id="nav">
         {navigationList}
       </nav>
-      <main>
-        <section id="main">
-          <div id="bottle_wrapper">
-            <img src={bottle} id="bottle_top"/>
-          </div>
+      <section id="main">
+        <div id="bottle_wrapper">
+          <img src={bottle} id="bottle_top"/>
+        </div>
 
-          <div id="main_header">Анаквас</div>
-          <div id="main_header_caption">
-            Інновативний напій натурального бродіння зі смаком ананасу
+        <div id="main_header">Анаквас</div>
+        <div id="main_header_caption">
+          Інновативний напій натурального бродіння зі смаком ананасу
+        </div>
+        <div className="order_button">
+          <div className="order_text">Замовити</div>
+          <div className="order_arrow">
+            <img src={arrowdown}/>
           </div>
-          <div className="order_button">
+        </div>
+      </section>
+      <section id="story">
+        <div className="header scroll_hidden from_left1">
+          Історія
+          <img src={spiral} id="spiral" className="scroll_hidden rotate"/>
+        </div>
+        <div id="story_header_caption" className="scroll_hidden from_left2">
+          Одного разу я випадково знайшов статтю про те, як можна навіть зі шкірок Ананасу зробити мега-корисний квасовий напій у домашніх умовах. Озброївшись гострим ножем, чистими пляшками, ананасом та ентузіазмом я взявся до роботи. І вже за 3 дні вийшов він, витвір мистецтва бродіння: Анаквас.
+        </div>
+      </section>
+      <section id="quality">
+        <img src={bottle} id="bottle_middle" className="scroll_hidden"/>
+        <img src={spiralcenter} id="spiral_center" className="scroll_hidden rotate"/>
+
+        <div>
+          <div className="card scroll_hidden">
+            <img src={bubbles}/>
+            <div className="title">Справжні бульбашки</div>
+            <div className="text">Ніякого штучкого вуглекислого газу, лише природній ефект.</div>
+          </div>
+          <div className="card scroll_hidden">
+            <img src={schield}/>
+            <div className="title">Непастиризований</div>
+            <div className="text">Без жодної термообробки, щоб зберегти усі найкорисніші мікроорганізми.</div>
+          </div>
+          <div className="card scroll_hidden">
+            <img src={temperature}/>
+            <div className="title">Пробіотичні властивостi</div>
+            <div className="text">Містить пробіотики, такі як Lactobacillus та інші корисні бактерії, які сприяють здоров'ю шлунково-кишкового тракту</div>
+          </div>
+          <div className="card scroll_hidden">
+            <img src={plant}/>
+            <div className="title">Натуральні ананаси</div>
+            <div className="text">Лише елітний сорт південноамериканських ананасів.</div>
+          </div>
+          <div className="card scroll_hidden">
+            <img src={bubbles}/>
+            <div className="title">Справжні бульбашки</div>
+            <div className="text">Ніякого штучкого вуглекислого газу, лише природній ефект.</div>
+          </div>
+        </div>
+      </section>
+      <section id="order">
+        <div className="content">
+          <div className="header scroll_hidden from_left1">Замовлення</div>
+          <form action="" id="order_form">
+            <input className="order_input scroll_hidden from_left2" type="text" placeholder="Ім’я та прізвище"/>
+            <input className="order_input scroll_hidden from_left2" type="text" placeholder="Емейл або номер телефону"/>
+            <input className="order_input scroll_hidden from_left2" type="text" placeholder="Адреса (країна, місто, PLZ, вулиця й дім)"/>
+            <input className="order_input scroll_hidden from_left2" type="number" placeholder="Кількість ящиків"/>
+          </form>
+          <div className="order_button scroll_hidden from_left2">
             <div className="order_text">Замовити</div>
             <div className="order_arrow">
               <img src={arrowdown}/>
             </div>
           </div>
-        </section>
-        <section id="story">
-          <div className="header">
-            Історія
-            <img src={spiral} id="spiral"/>
+          <div id="bottle_bottom_wrapper">
+            <img src={bottle} id="bottle_bottom" className="scroll_hidden"/>
           </div>
-          <div id="story_header_caption">
-            Одного разу я випадково знайшов статтю про те, як можна навіть зі шкірок Ананасу зробити мега-корисний квасовий напій у домашніх умовах. Озброївшись гострим ножем, чистими пляшками, ананасом та ентузіазмом я взявся до роботи. І вже за 3 дні вийшов він, витвір мистецтва бродіння: Анаквас.
-          </div>
-        </section>
-        <section id="quality">
-          <img src={bottle} id="bottle_middle"/>
-          <img src={spiralcenter} id="spiral_center"/>
+        </div>
 
-          <div className="card" id="card1">
-            <img src={bubbles}/>
-            <div className="title">Справжні бульбашки</div>
-            <div className="text">Ніякого штучкого вуглекислого газу, лише природній ефект.</div>
-          </div>
-          <div className="card" id="card2">
-            <img src={schield}/>
-            <div className="title">Непастиризований</div>
-            <div className="text">Без жодної термообробки, щоб зберегти усі найкорисніші мікроорганізми.</div>
-          </div>
-          <div className="card" id="card3">
-            <img src={temperature}/>
-            <div className="title">Пробіотичні властивостi</div>
-            <div className="text">Містить пробіотики, такі як Lactobacillus та інші корисні бактерії, які сприяють здоров'ю шлунково-кишкового тракту</div>
-          </div>
-          <div className="card" id="card4">
-            <img src={plant}/>
-            <div className="title">Натуральні ананаси</div>
-            <div className="text">Лише елітний сорт південноамериканських ананасів.</div>
-          </div>
-          <div className="card" id="card5">
-            <img src={bubbles}/>
-            <div className="title">Справжні бульбашки</div>
-            <div className="text">Ніякого штучкого вуглекислого газу, лише природній ефект.</div>
-          </div>
-        </section>
-        <section id="order">
-          <div className="content">
-            <div className="header">Замовлення</div>
-            <form action="" id="order_form">
-              <input type="text" placeholder="Ім’я та прізвище" className="order_input"/>
-              <input type="text" placeholder="Емейл або номер телефону" className="order_input"/>
-              <input type="text" placeholder="Адреса (країна, місто, PLZ, вулиця й дім)" className="order_input"/>
-              <input type="number" placeholder="Кількість ящиків" className="order_input"/>
-            </form>
-            <div className="order_button">
-              <div className="order_text">Замовити</div>
-              <div className="order_arrow">
-                <img src={arrowdown}/>
-              </div>
-            </div>
-
-            <img src={bottle} id="bottle_bottom"/>
-          </div>
-
-          <img src={spiralbottom} id="spiral_bottom"/>
-        </section>
-      </main>
+        <img src={spiralbottom} id="spiral_bottom" className="scroll_hidden from_left3"/>
+      </section>
       <footer id="footer">
         ©Wolars.it, 2023 
       </footer>
@@ -169,4 +171,18 @@ function watchNavbarScroll() {
       spiralTop.classList.remove("hidden");
     }
   });
+}
+function watchAnimationsOnScroll() {
+  let observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("scroll_shown");
+      } else {
+        entry.target.classList.remove("scroll_shown");
+      }
+    });
+  });
+
+  let hiddenElements = document.querySelectorAll(".scroll_hidden");
+  hiddenElements.forEach(el => observer.observe(el));
 }

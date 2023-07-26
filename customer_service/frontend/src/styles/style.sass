@@ -148,8 +148,11 @@ section
   left: -400px
   min-width: 524.55px
   height: 524.55px
-  transform: rotate(8.508deg)
   pointer-events: none
+  &.scroll_hidden
+    transform: rotate(8.508deg) translateX(-100px)
+  &.scroll_shown
+    transform: rotate(8.508deg) translateX(0px)
 #quality #spiral_center
   position: absolute
   top: 104px
@@ -167,6 +170,37 @@ section
   border-radius: 22.323px
   background: $yellow
   box-shadow: 0px 3.641697883605957px 27.312734603881836px 0px rgba(0, 0, 0, 0.20)
+
+  &.scroll_hidden:not(.scroll_shown)
+    top: 195px
+    left: 280px
+    transform: rotate(0deg)
+
+  &:nth-child(1)
+    top: -10px
+    left: -5px
+    transform: rotate(9.173deg)
+  &:nth-child(2)
+    top: 32px
+    left: 272px
+    transform: rotate(-5.348deg)
+    transition-delay: 200ms
+  &:nth-child(3)
+    top: 220px
+    left: 45px
+    transform: rotate(-8.012deg)
+    transition-delay: 400ms
+  &:nth-child(4)
+    top: 208px
+    left: 470px
+    transform: rotate(11.814deg)
+    transition-delay: 600ms
+  &:nth-child(5)
+    top: 374px
+    left: 297px
+    transform: rotate(3.247deg)
+    transition-delay: 800ms
+    
   .title
     color: #FFF
     font-family: Montserrat
@@ -183,27 +217,6 @@ section
     font-style: normal
     font-weight: 500
     line-height: normal
-#quality
-  #card1
-    top: -10px
-    left: -5px
-    transform: rotate(9.173deg)
-  #card2
-    top: 32px
-    left: 272px
-    transform: rotate(-5.348deg)
-  #card3
-    top: 220px
-    left: 45px
-    transform: rotate(-8.012deg)
-  #card4
-    top: 208px
-    left: 470px
-    transform: rotate(11.814deg)
-  #card5
-    top: 374px
-    left: 297px
-    transform: rotate(3.247deg)
 
 #order
   position: relative
@@ -211,9 +224,8 @@ section
   margin-bottom: 149px
   scroll-margin-top: 80px
 #order .content
-  position: relative
   margin-left: 190px
-  overflow: hidden
+  position: relative
 #order #order_form
   margin-top: 34px
   margin-bottom: 71px
@@ -237,11 +249,24 @@ section
   line-height: 32px
   &::placeholder
     color: $grey
+  
+  &:nth-child(2)
+    transition-delay: 200ms
+  &:nth-child(3)
+    transition-delay: 400ms
+  &:nth-child(4)
+    transition-delay: 600ms
 #order #spiral_bottom
   position: absolute
   top: 0
   left: 0
   z-index: -1
+#order #bottle_bottom_wrapper
+  position: absolute
+  top: 0
+  width: 100%
+  height: 100%
+  overflow: hidden
 #order #bottle_bottom
   display: block
   position: absolute
@@ -249,8 +274,12 @@ section
   right: -360px
   min-width: 949.06px
   height: 949.06px
-  transform: rotate(-80.68deg)
   pointer-events: none
+  &.scroll_hidden
+    transition-delay: 0.5s
+    transform: rotate(-80.68deg) translateY(20%)
+  &.scroll_shown
+    transform: rotate(-80.68deg) translateY(0px)
 
 #footer
   display: flex
@@ -319,3 +348,27 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button 
   -webkit-appearance: none
   margin: 0
+
+.scroll_hidden
+  opacity: 0
+  transition: 1s
+  &.from_left1
+    transform: translateX(-10px)
+  &.from_left2
+    transform: translateX(-50px)
+  &.from_left3
+    transform: translateX(-100%)
+  &.rotate
+    transform: rotate(180deg)
+  
+.scroll_shown 
+  opacity: 1
+  &:not(.rotate)
+    transform: translateX(0)
+  &.rotate
+    transform: rotate(0deg)
+
+@media( prefers-reduced-motion )
+  .scroll_hidden
+    transition: none
+  
