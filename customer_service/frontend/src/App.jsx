@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import spiraltop from "./svg/spiraltop.svg";
 import spiralright from "./svg/spiralright.svg";
 import spiral from "./svg/spiral.svg";
@@ -19,6 +19,9 @@ function App() {
     { name: "Склад", isActive: false },
     { name: "Замовити", isActive: false },
   ]);
+  useEffect(() => {
+    detectNavbarScroll()
+  }, []);
 
   function updateNavigation (name) {
     const nextNavigation = navigation.map((item) => {
@@ -57,7 +60,7 @@ function App() {
       <img src={spiraltop} id="spiral_top"/>
       <img src={spiralright} id="spiral_right"/>
 
-
+      <div id="nav_top_cover"></div>
       <nav id="nav">
         {navigationList}
       </nav>
@@ -143,5 +146,19 @@ function App() {
     </>
   );
 }
-
 export default App;
+
+function detectNavbarScroll () {
+  let navbar = document.getElementById("nav");
+  let spiralTop = document.getElementById("spiral_top");
+  window.addEventListener('scroll', () => {
+    let scrollTop = window.scrollY || document.documentElement.scrollTop;
+    if (scrollTop > 25) {
+      navbar.classList.add('scroll');
+      spiralTop.classList.add('hidden');
+    } else {
+      navbar.classList.remove('scroll');
+      spiralTop.classList.remove('hidden');
+    }
+  })
+}
