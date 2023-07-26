@@ -13,41 +13,27 @@ import bubbles from "./svg/bubbles.svg";
 
 function App() {
   const [navigation, setNavigation] = useState([
-    { name: "Головна", isActive: true },
-    { name: "Історія", isActive: false },
-    { name: "Якість", isActive: false },
-    { name: "Склад", isActive: false },
-    { name: "Замовити", isActive: false },
+    { name: "Головна", isActive: true, id: "main" },
+    { name: "Історія", isActive: false, id: "story" },
+    { name: "Якість", isActive: false, id: "quality" },
+    // { name: "Склад", isActive: false, id: "contents" },
+    { name: "Замовити", isActive: false, id: "order" },
   ]);
-  useEffect(() => {
-    detectNavbarScroll()
-  }, []);
 
-  function updateNavigation (name) {
-    const nextNavigation = navigation.map((item) => {
-      if (item.name == name) {
-        return {
-          ...item,
-          isActive: true
-        }
-      } 
-      return {
-        ...item,
-        isActive: false
-      }    
-    })
-    setNavigation(nextNavigation)
-  }
+  useEffect(() => {
+    watchNavbarScroll()
+    watchSectionsScroll()
+  }, []);
 
   const navigationList = navigation.map((item) => {
     return (
-      <button 
+      <a
         key={item.name}
         className={"nav_item " + (item.isActive ? "active" : "")}
-        onClick={() => updateNavigation(item.name)}
+        href={"#" + item.id}
       >
         {item.name}
-      </button>
+      </a>
     )
   })
 
@@ -64,82 +50,84 @@ function App() {
       <nav id="nav">
         {navigationList}
       </nav>
-      <header id="main">
-        <div id="bottle_wrapper">
-          <img src={bottle} id="bottle_top"/>
-        </div>
-
-        <div id="main_header">Анаквас</div>
-        <div id="main_header_caption">
-          Інновативний напій натурального бродіння зі смаком ананасу
-        </div>
-        <div className="order_button">
-          <div className="order_text">Замовити</div>
-          <div className="order_arrow">
-            <img src={arrowdown}/>
+      <main>
+        <section id="main">
+          <div id="bottle_wrapper">
+            <img src={bottle} id="bottle_top"/>
           </div>
-        </div>
-      </header>
-      <section id="story">
-        <div className="header">
-          Історія
-          <img src={spiral} id="spiral"/>
-        </div>
-        <div id="story_header_caption">
-          Одного разу я випадково знайшов статтю про те, як можна навіть зі шкірок Ананасу зробити мега-корисний квасовий напій у домашніх умовах. Озброївшись гострим ножем, чистими пляшками, ананасом та ентузіазмом я взявся до роботи. І вже за 3 дні вийшов він, витвір мистецтва бродіння: Анаквас.
-        </div>
-      </section>
-      <section id="quality">
-        <img src={bottle} id="bottle_middle"/>
-        <img src={spiralcenter} id="spiral_center"/>
 
-        <div className="card" id="card1">
-          <img src={bubbles}/>
-          <div className="title">Справжні бульбашки</div>
-          <div className="text">Ніякого штучкого вуглекислого газу, лише природній ефект.</div>
-        </div>
-        <div className="card" id="card2">
-          <img src={schield}/>
-          <div className="title">Непастиризований</div>
-          <div className="text">Без жодної термообробки, щоб зберегти усі найкорисніші мікроорганізми.</div>
-        </div>
-        <div className="card" id="card3">
-          <img src={temperature}/>
-          <div className="title">Пробіотичні властивостi</div>
-          <div className="text">Містить пробіотики, такі як Lactobacillus та інші корисні бактерії, які сприяють здоров'ю шлунково-кишкового тракту</div>
-        </div>
-        <div className="card" id="card4">
-          <img src={plant}/>
-          <div className="title">Натуральні ананаси</div>
-          <div className="text">Лише елітний сорт південноамериканських ананасів.</div>
-        </div>
-        <div className="card" id="card5">
-          <img src={bubbles}/>
-          <div className="title">Справжні бульбашки</div>
-          <div className="text">Ніякого штучкого вуглекислого газу, лише природній ефект.</div>
-        </div>
-      </section>
-      <section id="order">
-        <div className="content">
-          <div className="header">Замовлення</div>
-          <form action="" id="order_form">
-            <input type="text" placeholder="Ім’я та прізвище" className="order_input"/>
-            <input type="text" placeholder="Емейл або номер телефону" className="order_input"/>
-            <input type="text" placeholder="Адреса (країна, місто, PLZ, вулиця й дім)" className="order_input"/>
-            <input type="number" placeholder="Кількість ящиків" className="order_input"/>
-          </form>
+          <div id="main_header">Анаквас</div>
+          <div id="main_header_caption">
+            Інновативний напій натурального бродіння зі смаком ананасу
+          </div>
           <div className="order_button">
             <div className="order_text">Замовити</div>
             <div className="order_arrow">
               <img src={arrowdown}/>
             </div>
           </div>
+        </section>
+        <section id="story">
+          <div className="header">
+            Історія
+            <img src={spiral} id="spiral"/>
+          </div>
+          <div id="story_header_caption">
+            Одного разу я випадково знайшов статтю про те, як можна навіть зі шкірок Ананасу зробити мега-корисний квасовий напій у домашніх умовах. Озброївшись гострим ножем, чистими пляшками, ананасом та ентузіазмом я взявся до роботи. І вже за 3 дні вийшов він, витвір мистецтва бродіння: Анаквас.
+          </div>
+        </section>
+        <section id="quality">
+          <img src={bottle} id="bottle_middle"/>
+          <img src={spiralcenter} id="spiral_center"/>
 
-          <img src={bottle} id="bottle_bottom"/>
-        </div>
+          <div className="card" id="card1">
+            <img src={bubbles}/>
+            <div className="title">Справжні бульбашки</div>
+            <div className="text">Ніякого штучкого вуглекислого газу, лише природній ефект.</div>
+          </div>
+          <div className="card" id="card2">
+            <img src={schield}/>
+            <div className="title">Непастиризований</div>
+            <div className="text">Без жодної термообробки, щоб зберегти усі найкорисніші мікроорганізми.</div>
+          </div>
+          <div className="card" id="card3">
+            <img src={temperature}/>
+            <div className="title">Пробіотичні властивостi</div>
+            <div className="text">Містить пробіотики, такі як Lactobacillus та інші корисні бактерії, які сприяють здоров'ю шлунково-кишкового тракту</div>
+          </div>
+          <div className="card" id="card4">
+            <img src={plant}/>
+            <div className="title">Натуральні ананаси</div>
+            <div className="text">Лише елітний сорт південноамериканських ананасів.</div>
+          </div>
+          <div className="card" id="card5">
+            <img src={bubbles}/>
+            <div className="title">Справжні бульбашки</div>
+            <div className="text">Ніякого штучкого вуглекислого газу, лише природній ефект.</div>
+          </div>
+        </section>
+        <section id="order">
+          <div className="content">
+            <div className="header">Замовлення</div>
+            <form action="" id="order_form">
+              <input type="text" placeholder="Ім’я та прізвище" className="order_input"/>
+              <input type="text" placeholder="Емейл або номер телефону" className="order_input"/>
+              <input type="text" placeholder="Адреса (країна, місто, PLZ, вулиця й дім)" className="order_input"/>
+              <input type="number" placeholder="Кількість ящиків" className="order_input"/>
+            </form>
+            <div className="order_button">
+              <div className="order_text">Замовити</div>
+              <div className="order_arrow">
+                <img src={arrowdown}/>
+              </div>
+            </div>
 
-        <img src={spiralbottom} id="spiral_bottom"/>
-      </section>
+            <img src={bottle} id="bottle_bottom"/>
+          </div>
+
+          <img src={spiralbottom} id="spiral_bottom"/>
+        </section>
+      </main>
       <footer id="footer">
         ©Wolars.it, 2023 
       </footer>
@@ -148,17 +136,37 @@ function App() {
 }
 export default App;
 
-function detectNavbarScroll () {
+function watchSectionsScroll() {
+  let sections = document.querySelectorAll("section");
+  let navLinks = document.querySelectorAll("nav a");
+  window.addEventListener("scroll", () => {
+    sections.forEach(section => {
+      let top = window.scrollY;
+      let offset = section.offsetTop - 150;
+      let height = section.offsetHeight;
+      let id = section.getAttribute("id");
+      if (top >= offset && offset + height) {
+        navLinks.forEach(link => {
+          link.classList.remove("active");
+        });
+        document
+          .querySelector("nav a[href*=" + id + "]")
+          .classList.add("active");
+      }
+    });
+  });
+}
+function watchNavbarScroll() {
   let navbar = document.getElementById("nav");
   let spiralTop = document.getElementById("spiral_top");
-  window.addEventListener('scroll', () => {
+  window.addEventListener("scroll", () => {
     let scrollTop = window.scrollY || document.documentElement.scrollTop;
     if (scrollTop > 25) {
-      navbar.classList.add('scroll');
-      spiralTop.classList.add('hidden');
+      navbar.classList.add("scroll");
+      spiralTop.classList.add("hidden");
     } else {
-      navbar.classList.remove('scroll');
-      spiralTop.classList.remove('hidden');
+      navbar.classList.remove("scroll");
+      spiralTop.classList.remove("hidden");
     }
-  })
+  });
 }
