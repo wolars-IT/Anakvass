@@ -112,19 +112,19 @@ function App() {
         <div className="content">
           <div className="header scroll_hidden from_left1">Замовлення</div>
           <form action="" id="order_form">
-            <input className="order_input scroll_hidden from_left2" type="text" placeholder="Ім’я та прізвище"/>
-            <input className="order_input scroll_hidden from_left2" type="text" placeholder="Емейл"/>
-            <input className="order_input scroll_hidden from_left2" type="text" placeholder="Телефон"/>
-            <input className="order_input scroll_hidden from_left2" type="text" placeholder="Адреса (країна, місто, вулиця, дім, зіп код)"/>
-            <input className="order_input scroll_hidden from_left2" type="number" placeholder="Кількість ящиків"/>
-            <input className="order_input scroll_hidden from_left2" type="text" placeholder="Коментарі"/>
+            <input className="order_input scroll_hidden from_left2" name="full_name" type="text" placeholder="Ім’я та прізвище" required maxLength="255"/>
+            <input className="order_input scroll_hidden from_left2" name="email" type="email" placeholder="Емейл" required maxLength="320"/>
+            <input className="order_input scroll_hidden from_left2" name="phone_number" type="text" placeholder="Телефон" required maxLength="15"/>
+            <input className="order_input scroll_hidden from_left2" name="address" type="text" placeholder="Адреса (країна, місто, вулиця, дім, зіп код)" required maxLength="425"/>
+            <input className="order_input scroll_hidden from_left2" name="box count" type="number" placeholder="Кількість ящиків" required/>
+            <input className="order_input scroll_hidden from_left2" name="comment" type="text" placeholder="Коментар" maxLength="255"/>
+            <button type="button" className="order_button scroll_hidden from_left2">
+              <div className="order_text">Замовити</div>
+              <div className="order_arrow">
+                <img src={arrowdown}/>
+              </div>
+            </button>
           </form>
-          <div className="order_button scroll_hidden from_left2">
-            <div className="order_text">Замовити</div>
-            <div className="order_arrow">
-              <img src={arrowdown}/>
-            </div>
-          </div>
           <div id="bottle_bottom_wrapper">
             <img src={bottle} id="bottle_bottom" className="scroll_hidden"/>
           </div>
