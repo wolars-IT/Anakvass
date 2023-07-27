@@ -60,12 +60,12 @@ function App() {
         <div id="main_header_caption">
           Інновативний напій натурального бродіння зі смаком ананасу
         </div>
-        <div className="order_button">
+        <a className="order_button" href="#order">
           <div className="order_text">Замовити</div>
           <div className="order_arrow">
             <img src={arrowdown}/>
           </div>
-        </div>
+        </a>
       </section>
       <section id="story">
         <div className="header scroll_hidden from_left1">
