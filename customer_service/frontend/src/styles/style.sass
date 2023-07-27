@@ -150,6 +150,7 @@ section
   height: 524.55px
   pointer-events: none
   &.scroll_hidden
+    transition-delay: 0.5s
     transform: rotate(8.508deg) translateX(-100px)
   &.scroll_shown
     transform: rotate(8.508deg) translateX(0px)
@@ -228,7 +229,7 @@ section
   position: relative
 #order #order_form
   margin-top: 34px
-  margin-bottom: 71px
+  margin-bottom: 39px
   display: flex
   flex-direction: column
   row-gap: 35px
@@ -256,6 +257,10 @@ section
     transition-delay: 400ms
   &:nth-child(4)
     transition-delay: 600ms
+  &:nth-child(5)
+    transition-delay: 800ms
+  &:nth-child(6)
+    transition-delay: 1000ms
 #order #spiral_bottom
   position: absolute
   top: 0

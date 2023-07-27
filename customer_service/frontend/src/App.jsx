@@ -113,9 +113,11 @@ function App() {
           <div className="header scroll_hidden from_left1">Замовлення</div>
           <form action="" id="order_form">
             <input className="order_input scroll_hidden from_left2" type="text" placeholder="Ім’я та прізвище"/>
-            <input className="order_input scroll_hidden from_left2" type="text" placeholder="Емейл або номер телефону"/>
-            <input className="order_input scroll_hidden from_left2" type="text" placeholder="Адреса (країна, місто, PLZ, вулиця й дім)"/>
+            <input className="order_input scroll_hidden from_left2" type="text" placeholder="Емейл"/>
+            <input className="order_input scroll_hidden from_left2" type="text" placeholder="Телефон"/>
+            <input className="order_input scroll_hidden from_left2" type="text" placeholder="Адреса (країна, місто, вулиця, дім, зіп код)"/>
             <input className="order_input scroll_hidden from_left2" type="number" placeholder="Кількість ящиків"/>
+            <input className="order_input scroll_hidden from_left2" type="text" placeholder="Коментарі"/>
           </form>
           <div className="order_button scroll_hidden from_left2">
             <div className="order_text">Замовити</div>
