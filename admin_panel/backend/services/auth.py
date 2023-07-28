@@ -21,18 +21,13 @@ async def get_redis() -> AsyncGenerator[Redis, None]:
     await connection.close()
 
 
-class BaseAdminService:
-    def __init__(self, repo: AdminRepo):
-        self.repo = repo
-
-
-class AuthService(BaseAdminService):
+class AuthService:
     def __init__(
         self,
         repo: AdminRepo = Depends(AdminRepo),
         redis: Redis = Depends(get_redis)
     ):
-        super().__init__(repo)
+        self.repo = repo
         self.redis = redis
         self.cookie_name = settings.cookie_name
         self.cookie_age = settings.cookie_age
