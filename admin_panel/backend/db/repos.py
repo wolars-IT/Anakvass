@@ -1,3 +1,4 @@
+from typing import Sequence
 from passlib.context import CryptContext
 
 from sqlalchemy import select, update
@@ -5,8 +6,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import Depends
 
 from db.database import get_session
-from models.models import Admin
+from models.models import Admin, Order
+
 from schemas.admin import AdminСredentialsSchema
+from schemas.order import Statuses
 
 
 class BaseRepo:
@@ -36,3 +39,19 @@ class AdminRepo(BaseRepo):
     async def update(self, admin: Admin, **kwargs) -> None:
         stmt = update(Admin).where(Admin.id == admin.id).values(**kwargs)
         await self.session.execute(stmt)
+
+
+class OrderRepo(BaseRepo):
+    async def get(self, order_id: int) -> Order | None:
+        return await self.session.get(Order, order_id)
+
+    async def list(self, offset: int, limit: int) -> Sequence[Order]:
+        stmt = select(Order).offset(offset).limit(limit)
+        scalars = await self.session.scalars(stmt)
+        return scalars.all()
+
+    async def update(self, order: Order, status: Statuses) -> None:
+        order.status = status
+
+    async def delete(self, order: Order) -> None:
+        await self.session.delete(order)
