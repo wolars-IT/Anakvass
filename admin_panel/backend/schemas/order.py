@@ -18,3 +18,4 @@ class OrderSchema(BaseModel):
     address: constr(min_length=12, max_length=425)
     box_count: conint(gt=0, lt=(2**32))
     comment: constr(min_length=1, max_length=255) | None
+    status: Statuses
