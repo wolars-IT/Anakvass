@@ -113,12 +113,12 @@ function App() {
           <div className="header scroll_hidden from_left1">Замовлення</div>
           <form action="" id="order_form">
             <input className="order_input scroll_hidden from_left2" name="full_name" type="text" placeholder="Ім’я та прізвище" required maxLength="255"/>
-            <input className="order_input scroll_hidden from_left2" name="email" type="email" placeholder="Емейл" required maxLength="320"/>
-            <input className="order_input scroll_hidden from_left2" name="phone_number" type="text" placeholder="Телефон" required maxLength="15"/>
+            <input className="order_input scroll_hidden from_left2" name="email" type="email" placeholder="Емейл" required maxLength="320" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
+            <input className="order_input scroll_hidden from_left2" name="phone_number" type="text" placeholder="Телефон" required minLength="5" maxLength="15"/>
             <input className="order_input scroll_hidden from_left2" name="address" type="text" placeholder="Адреса (країна, місто, вулиця, дім, зіп код)" required maxLength="425"/>
-            <input className="order_input scroll_hidden from_left2" name="box count" type="number" placeholder="Кількість ящиків" required/>
+            <input className="order_input scroll_hidden from_left2" name="box_count" type="number" placeholder="Кількість ящиків" min="1" max="4294967295" required/>
             <input className="order_input scroll_hidden from_left2" name="comment" type="text" placeholder="Коментар" maxLength="255"/>
-            <button type="button" className="order_button scroll_hidden from_left2">
+            <button className="order_button scroll_hidden from_left2">
               <div className="order_text">Замовити</div>
               <div className="order_arrow">
                 <img src={arrowdown}/>
