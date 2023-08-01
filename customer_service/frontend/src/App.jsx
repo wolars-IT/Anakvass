@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react"
-import spiraltop from "./svg/spiraltop.svg";
-import spiralright from "./svg/spiralright.svg";
-import spiral from "./svg/spiral.svg";
-import spiralbottom from "./svg/spiralbottom.svg";
-import spiralcenter from "./svg/spiralcenter.svg";
-import arrowdown from "./svg/arrowdown.svg";
-import bottle from "./img/bottle.png"
-import schield from "./svg/schield.svg";
-import temperature from "./svg/temperature.svg";
-import plant from "./svg/plant.svg";
-import bubbles from "./svg/bubbles.svg";
+import spiraltop from "./assets/svg/spiraltop.svg";
+import spiralright from "./assets/svg/spiralright.svg";
+import spiral from "./assets/svg/spiral.svg";
+import spiralbottom from "./assets/svg/spiralbottom.svg";
+import spiralcenter from "./assets/svg/spiralcenter.svg";
+import arrowdown from "./assets/svg/arrowdown.svg";
+import bottle from "./assets/img/bottle.png"
+import schield from "./assets/svg/schield.svg";
+import temperature from "./assets/svg/temperature.svg";
+import plant from "./assets/svg/plant.svg";
+import bubbles from "./assets/svg/bubbles.svg";
 
 function App() {
   const [navigation, setNavigation] = useState([
