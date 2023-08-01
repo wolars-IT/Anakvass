@@ -179,9 +179,10 @@ function watchAnimationsOnScroll() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("scroll_shown");
-      } else {
-        entry.target.classList.remove("scroll_shown");
-      }
+      } 
+      // else {
+      //   entry.target.classList.remove("scroll_shown");
+      // }
     });
   });
 
