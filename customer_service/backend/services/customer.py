@@ -5,12 +5,10 @@ from schemas.order import Order as OrderSchema
 from models.order import Order as OrderModel
 
 
-class BaseCustomerService:
+class Customer:
     def __init__(self, repo: CustomerRepo = Depends(CustomerRepo)):
         self.repo = repo
 
-
-class Customer(BaseCustomerService):
     async def send_order(self, order: OrderSchema) -> int:
         """Writes order to DB and return its ID"""
         new_order: OrderModel = await self.repo.add(order)
