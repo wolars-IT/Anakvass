@@ -25,35 +25,40 @@ class Order(BaseModel):
     comment: constr(min_length=1, max_length=255) | None
 
     @field_validator("full_name")
-    def full_name_validator(cls, value):
+    def full_name_validator(cls, value: str):
         value = value.strip()
+
         if value.count(" ") < 1:
             raise ValueError("Wrong full name format: Full name must contain at least 1 space")
+
         return value
 
     @field_validator("email")
-    def email_validator(cls, value):
-        value = value.strip()
-        string = value
-        value = value.split("@")
-        if len(value) != 2:
+    def email_validator(cls, value: str):
+        if value.count("@") != 1:
             raise ValueError("Wrong email format: email address must have 2 parts separated by \"@\"")
-        return string
+
+        return value.strip()
 
     @field_validator("phone_number")
     def phone_number_validator(cls, value):
+        # Filter spec-chars
         value = "".join(filter(lambda x: x.isdigit(), value.strip()))
+
         if len(value) < 6:
             raise ValueError("Wrong phone number format: Phone number must be greater than 6 digits")
+
         return value
 
     @field_validator("address")
     def address_validator(cls, value):
         value = value.strip()
+
         if value.count(", ") != 4:
             raise ValueError("Wrong address format: Address must contain 4 separators (\", \")")
         if not value.split(", ")[-1].isdigit():
             raise ValueError("Wrong address format: Wrong zip code: zip code must be a number")
+
         return value
 
     @field_validator("comment")
