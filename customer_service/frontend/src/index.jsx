@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 
+import "./assets/scripts/i18n.js"
+
 import "./assets/styles/stylereset.sass";
 import "./assets/styles/style.sass";
 

@@ -1,24 +1,34 @@
 import { useEffect, useState } from "react"
+
 import spiraltop from "./assets/svg/spiraltop.svg";
 import spiralright from "./assets/svg/spiralright.svg";
 import spiral from "./assets/svg/spiral.svg";
 import spiralbottom from "./assets/svg/spiralbottom.svg";
 import spiralcenter from "./assets/svg/spiralcenter.svg";
 import arrowdown from "./assets/svg/arrowdown.svg";
-import bottle from "./assets/img/bottle.png"
 import schield from "./assets/svg/schield.svg";
 import temperature from "./assets/svg/temperature.svg";
 import plant from "./assets/svg/plant.svg";
 import bubbles from "./assets/svg/bubbles.svg";
+import bottle from "./assets/img/bottle.png"
+
+import { useTranslation } from 'react-i18next';
 
 function App() {
-  const [navigation, setNavigation] = useState([
-    { name: "Головна", isActive: true, id: "main" },
-    { name: "Історія", isActive: false, id: "story" },
-    { name: "Якість", isActive: false, id: "quality" },
-    // { name: "Склад", isActive: false, id: "contents" },
-    { name: "Замовити", isActive: false, id: "order" },
-  ]);
+  const { t, i18n } = useTranslation();
+  
+  const navigation = [
+    { name: "", id: "main" },
+    { name: "", id: "story" },
+    { name: "", id: "quality" },
+    // { name: "", id: "contents" },
+    { name: "", id: "order" },
+  ].map(item => {
+    return {
+      ...item,
+      name: t("nav." + item.id)
+    }
+  });
 
   useEffect(() => {
     watchNavbarScroll()
@@ -38,103 +48,146 @@ function App() {
     )
   })
 
+  // {t("")}
   return (
     <>
       <div id="language_switch">
         <button className="switch_half left_half">UK</button>
         <button className="switch_half right_half">UA</button>
       </div>
-      <img src={spiraltop} id="spiral_top"/>
-      <img src={spiralright} id="spiral_right"/>
-
+      <img src={spiraltop} id="spiral_top" />
+      <img src={spiralright} id="spiral_right" />
       <div id="nav_top_cover"></div>
-      <nav id="nav">
-        {navigationList}
-      </nav>
+      <nav id="nav">{navigationList}</nav>
       <section id="main">
         <div id="bottle_wrapper">
-          <img src={bottle} id="bottle_top"/>
+          <img src={bottle} id="bottle_top" />
         </div>
 
-        <div id="main_header">Анаквас</div>
-        <div id="main_header_caption">
-          Інновативний напій натурального бродіння зі смаком ананасу
-        </div>
+        <div id="main_header">{t("main.header")}</div>
+        <div id="main_header_caption">{t("main.headerCaption")}</div>
         <a className="order_button" href="#order">
-          <div className="order_text">Замовити</div>
+          <div className="order_text">{t("orderButton")}</div>
           <div className="order_arrow">
-            <img src={arrowdown}/>
+            <img src={arrowdown} />
           </div>
         </a>
       </section>
       <section id="story">
         <div className="header scroll_hidden from_left1">
-          Історія
-          <img src={spiral} id="spiral" className="scroll_hidden rotate"/>
+          {t("story.header")}
+          <img src={spiral} id="spiral" className="scroll_hidden rotate" />
         </div>
         <div id="story_header_caption" className="scroll_hidden from_left2">
-          Одного разу я випадково знайшов статтю про те, як можна навіть зі шкірок Ананасу зробити мега-корисний квасовий напій у домашніх умовах. Озброївшись гострим ножем, чистими пляшками, ананасом та ентузіазмом я взявся до роботи. І вже через три дні вийшов він, витвір мистецтва бродіння — Анаквас.
+          {t("story.headerCaption")}
         </div>
       </section>
       <section id="quality">
-        <img src={bottle} id="bottle_middle" className="scroll_hidden"/>
-        <img src={spiralcenter} id="spiral_center" className="scroll_hidden rotate"/>
+        <img src={bottle} id="bottle_middle" className="scroll_hidden" />
+        <img
+          src={spiralcenter}
+          id="spiral_center"
+          className="scroll_hidden rotate"
+        />
 
         <div>
           <div className="card scroll_hidden">
-            <img src={bubbles}/>
-            <div className="title">Справжні бульбашки</div>
-            <div className="text">Ніякого штучкого вуглекислого газу, лише природній ефект.</div>
+            <img src={bubbles} />
+            <div className="title">{t("quality.card1")}</div>
+            <div className="text">{t("quality.cardDesc1")}</div>
           </div>
           <div className="card scroll_hidden">
-            <img src={schield}/>
-            <div className="title">Непастиризований</div>
-            <div className="text">Без жодної термообробки, щоб зберегти усі найкорисніші мікроорганізми.</div>
+            <img src={schield} />
+            <div className="title">{t("quality.card2")}</div>
+            <div className="text">{t("quality.cardDesc2")}</div>
           </div>
           <div className="card scroll_hidden">
-            <img src={temperature}/>
-            <div className="title">Пробіотичні властивостi</div>
-            <div className="text">Містить пробіотики, такі як Lactobacillus та інші корисні бактерії, які сприяють здоров'ю шлунково-кишкового тракту</div>
+            <img src={temperature} />
+            <div className="title">{t("quality.card3")}</div>
+            <div className="text">{t("quality.cardDesc3")}</div>
           </div>
           <div className="card scroll_hidden">
-            <img src={plant}/>
-            <div className="title">Натуральні ананаси</div>
-            <div className="text">Лише елітний сорт південноамериканських ананасів.</div>
+            <img src={plant} />
+            <div className="title">{t("quality.card4")}</div>
+            <div className="text">{t("quality.cardDesc4")}</div>
           </div>
-          {/* <div className="card scroll_hidden">
-            <img src={bubbles}/>
-            <div className="title">Справжні бульбашки</div>
-            <div className="text">Ніякого штучкого вуглекислого газу, лише природній ефект.</div>
-          </div> */}
         </div>
       </section>
       <section id="order">
         <div className="content">
-          <div className="header scroll_hidden from_left1">Замовлення</div>
+          <div className="header scroll_hidden from_left1">
+            {t("order.header")}
+          </div>
           <form action="" id="order_form">
-            <input className="order_input scroll_hidden from_left2" name="full_name" type="text" placeholder="Ім’я та прізвище" required maxLength="255"/>
-            <input className="order_input scroll_hidden from_left2" name="email" type="email" placeholder="Електронна пошта" required maxLength="320" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
-            <input className="order_input scroll_hidden from_left2" name="phone_number" type="text" placeholder="Телефон" required minLength="5" maxLength="15"/>
-            <input className="order_input scroll_hidden from_left2" name="address" type="text" placeholder="Адреса (країна, місто, вулиця, дім, ZIP-код)" required maxLength="425"/>
-            <input className="order_input scroll_hidden from_left2" name="box_count" type="number" placeholder="Кількість ящиків" min="1" max="4294967295" required/>
-            <input className="order_input scroll_hidden from_left2" name="comment" type="text" placeholder="Коментар" maxLength="255"/>
+            <input
+              className="order_input scroll_hidden from_left2"
+              name="full_name"
+              type="text"
+              placeholder={t("order.formPlaceholder.fullName")}
+              required
+              maxLength="255"
+            />
+            <input
+              className="order_input scroll_hidden from_left2"
+              name="email"
+              type="email"
+              placeholder={t("order.formPlaceholder.email")}
+              required
+              maxLength="320"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            />
+            <input
+              className="order_input scroll_hidden from_left2"
+              name="phone_number"
+              type="text"
+              placeholder={t("order.formPlaceholder.phoneNumber")}
+              required
+              minLength="5"
+              maxLength="15"
+            />
+            <input
+              className="order_input scroll_hidden from_left2"
+              name="address"
+              type="text"
+              placeholder={t("order.formPlaceholder.address")}
+              required
+              maxLength="425"
+            />
+            <input
+              className="order_input scroll_hidden from_left2"
+              name="box_count"
+              type="number"
+              placeholder={t("order.formPlaceholder.boxCount")}
+              min="1"
+              max="4294967295"
+              required
+            />
+            <input
+              className="order_input scroll_hidden from_left2"
+              name="comment"
+              type="text"
+              placeholder={t("order.formPlaceholder.comment")}
+              maxLength="255"
+            />
             <button className="order_button scroll_hidden from_left2">
               <div className="order_text">Замовити</div>
               <div className="order_arrow">
-                <img src={arrowdown}/>
+                <img src={arrowdown} />
               </div>
             </button>
           </form>
           <div id="bottle_bottom_wrapper">
-            <img src={bottle} id="bottle_bottom" className="scroll_hidden"/>
+            <img src={bottle} id="bottle_bottom" className="scroll_hidden" />
           </div>
         </div>
 
-        <img src={spiralbottom} id="spiral_bottom" className="scroll_hidden from_left3"/>
+        <img
+          src={spiralbottom}
+          id="spiral_bottom"
+          className="scroll_hidden from_left3"
+        />
       </section>
-      <footer id="footer">
-        ©Wolars.it, 2023 
-      </footer>
+      <footer id="footer">©Wolars.it, 2023</footer>
     </>
   );
 }
