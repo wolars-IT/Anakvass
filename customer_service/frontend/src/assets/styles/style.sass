@@ -15,6 +15,8 @@
   font-style: normal
   font-weight: 500
   line-height: normal
+@mixin section_container
+  max-width: 1080px
 
 *
   scroll-behavior: smooth
@@ -97,7 +99,9 @@ section
   scroll-margin-top: 100px
 
 #main
-  width: 896px
+  @include section_container
+  
+  padding: 0 92px
   margin: 0 auto 208px
   position: relative
 #main #main_header
@@ -131,7 +135,8 @@ section
     flex-shrink: 0
 
 #story
-  max-width: 1080px
+  @include section_container
+
   margin: 0 auto 121px
 #story #spiral
   margin-left: 20px
@@ -141,7 +146,8 @@ section
   width: 532px
 
 #quality
-  max-width: 1080px
+  @include section_container
+
   position: relative
   margin: 0 auto 121px
   height: 600px
@@ -233,8 +239,9 @@ section
   margin: 214px 0 121px
   scroll-margin-top: 80px
 #order .content
+  @include section_container
+  
   position: relative
-  max-width: 1080px
   margin: 0 auto
   padding-left: 92px
 #order #order_form
