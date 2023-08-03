@@ -119,7 +119,7 @@ function App() {
           className="scroll_hidden rotate"
         />
 
-        <div>
+        <div id="cards">
           <div className="card scroll_hidden">
             <img src={bubbles} />
             <div className="title">{t("quality.card1")}</div>
@@ -205,11 +205,11 @@ function App() {
               </div>
             </button>
           </form>
-          <div id="bottle_bottom_wrapper">
-            <img src={bottle} id="bottle_bottom" className="scroll_hidden" />
-          </div>
         </div>
 
+        <div id="bottle_bottom_wrapper">
+          <img src={bottle} id="bottle_bottom" className="scroll_hidden" />
+        </div>
         <img
           src={spiralbottom}
           id="spiral_bottom"

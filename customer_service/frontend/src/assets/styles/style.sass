@@ -131,8 +131,8 @@ section
     flex-shrink: 0
 
 #story
-  margin-left: 98px
-  margin-bottom: 121px
+  max-width: 1080px
+  margin: 0 auto 121px
 #story #spiral
   margin-left: 20px
 #story #story_header_caption
@@ -141,14 +141,15 @@ section
   width: 532px
 
 #quality
+  max-width: 1080px
   position: relative
-  margin-left: 360px
+  margin: 0 auto 121px
   height: 600px
   scroll-margin-top: 120px
 #quality #bottle_middle
   position: absolute
   top: 0
-  left: -400px
+  left: -123px
   min-width: 524.55px
   height: 524.55px
   pointer-events: none
@@ -160,7 +161,12 @@ section
 #quality #spiral_center
   position: absolute
   top: 104px
-  left: 158px
+  left: 461px
+#quality #cards
+  position: absolute
+  top: 0
+  left: 0
+  margin-left: 303px
 #quality .card
   position: absolute
   display: flex
@@ -224,12 +230,13 @@ section
 
 #order
   position: relative
-  margin-top: 214px
-  margin-bottom: 121px
+  margin: 214px 0 121px
   scroll-margin-top: 80px
 #order .content
-  margin-left: 190px
   position: relative
+  max-width: 1080px
+  margin: 0 auto
+  padding-left: 92px
 #order #order_form
   margin-top: 34px
   display: flex
