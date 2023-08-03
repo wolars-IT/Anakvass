@@ -79,15 +79,18 @@ body
     line-height: normal
 
     cursor: pointer
-    &:hover
-      opacity: 0.8
-  .left_half
+
     background: $darkyellow
     color: $yellow
+    &:hover
+      opacity: 0.8
+      color: $white
+    &.active
+      background: $yellow
+      color: $white
+  .left_half
     padding-left: 5.85px
   .right_half
-    background: $yellow
-    color: $white
     padding-left: 4.55px
 
 section

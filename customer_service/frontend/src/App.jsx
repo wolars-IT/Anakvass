@@ -12,7 +12,8 @@ import plant from "./assets/svg/plant.svg";
 import bubbles from "./assets/svg/bubbles.svg";
 import bottle from "./assets/img/bottle.png"
 
-import { useTranslation } from 'react-i18next';
+import classNames from 'classnames';
+import { useTranslation } from "react-i18next";
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -29,6 +30,16 @@ function App() {
       name: t("nav." + item.id)
     }
   });
+  const [lngs, setLngs] = useState([
+    {code: "uk", isActive: true},
+    {code: "en", isActive: false}
+  ])
+  let leftLngButtonClassNames = classNames("switch_half", "left_half", {
+    active: lngs[0].isActive,
+  });
+  let rightLngButtonClassNames = classNames("switch_half", "right_half", {
+    active: lngs[1].isActive,
+  });
 
   useEffect(() => {
     watchNavbarScroll()
@@ -36,11 +47,29 @@ function App() {
     watchAnimationsOnScroll()
   }, []);
 
+  function setLng(code) {
+    const nextLngs = lngs.map((lng) => {
+      if (lng.code == code) {
+        return {
+          ...lng,
+          isActive: true
+        }
+      }
+      return {
+        ...lng,
+        isActive: false
+      }
+    })
+
+    i18n.changeLanguage(code);
+    setLngs(nextLngs)
+  }
+
   const navigationList = navigation.map((item) => {
     return (
       <a
-        key={item.name}
-        className={"nav_item " + (item.isActive ? "active" : "")}
+        key={item.id}
+        className="nav_item"
         href={"#" + item.id}
       >
         {item.name}
@@ -52,8 +81,8 @@ function App() {
   return (
     <>
       <div id="language_switch">
-        <button className="switch_half left_half">UK</button>
-        <button className="switch_half right_half">UA</button>
+        <button className={leftLngButtonClassNames} onClick={() => setLng("uk")}>UK</button>
+        <button className={rightLngButtonClassNames} onClick={() => setLng("en")}>EN</button>
       </div>
       <img src={spiraltop} id="spiral_top" />
       <img src={spiralright} id="spiral_right" />
@@ -170,7 +199,7 @@ function App() {
               maxLength="255"
             />
             <button className="order_button scroll_hidden from_left2">
-              <div className="order_text">Замовити</div>
+              <div className="order_text">{t("orderButton")}</div>
               <div className="order_arrow">
                 <img src={arrowdown} />
               </div>
