@@ -1,9 +1,9 @@
 @import "./variables"
 
-@mixin header
+@mixin title
   color: $yellow
   font-family: Impact
-  font-size: 120px
+  font-size: clamp(41.95px, 13vw, 120px)
   font-style: normal
   font-weight: 400
   line-height: normal
@@ -15,35 +15,49 @@
   font-style: normal
   font-weight: 500
   line-height: normal
-@mixin section_container
-  max-width: 1080px
+  @media screen and (max-width: 576px)
+    font-size: 13px
 
 *
   scroll-behavior: smooth
-body
+
+html, body 
+  overflow-x: hidden
+
+body 
   background: $background
 
-#nav_top_cover
+.header 
   position: absolute
+  top: 25px
   width: 100%
-  height: 25px
-  top: 0
-  left: 0
-  background-color: $background
+  padding: 25px 0
+  transition: background-color 0.3s, box-shadow 0.3s
+  z-index: 999
+  &.fixed
+    position: fixed
+    top: 0
+    background-color: $background
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.20)
+  .container 
+    display: flex
+    justify-content: space-between
+    align-items: center
+  .menu
+    &__btn 
+      display: none
+      flex-direction: column
+      cursor: pointer
+      gap: 5px
+
 #nav
-  position: sticky
-  top: 0
   display: flex
   justify-content: center
-  align-items: flex-start
   gap: 48px
-  margin: 25px auto 0
-  padding: 25px
+  margin: 0 auto
+  flex: 1
   z-index: 1
-  background-color: $background
   transition: 0.5s
-  &.scroll
-    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.20)
   .nav_item
     color: $textgrey
     font-family: Montserrat
@@ -60,13 +74,11 @@ body
     text-underline-offset: 4px
 
 #language_switch
-  position: absolute
-  top: 45px
-  right: 100px
+  display: flex
   width: 52px
   height: 22.75px
   border-radius: 19.5px
-  display: flex
+  margin-left: auto
   overflow: hidden
   z-index: 2
   .switch_half
@@ -95,19 +107,16 @@ body
   .right_half
     padding-left: 4.55px
 
-section
-  scroll-margin-top: 100px
-
 #main
-  @include section_container
-  
-  padding: 0 92px
-  margin: 0 auto 208px
-  position: relative
+  padding: 87px 92px 208px
+  .container 
+    position: relative
+    display: flex
+    justify-content: center
 #main #main_header
   color: $yellow
   font-family: Impact
-  font-size: 266.551px
+  font-size: clamp(80px, 25vw, 266.551px)
   font-style: normal
   font-weight: 400
   line-height: normal
@@ -115,9 +124,9 @@ section
 #main #main_header_caption
   @include header_caption
 
+  white-space: pre
   line-height: 127%
   letter-spacing: 0.17px
-  width: 316px
   margin-bottom: 29px
 #main #bottle_wrapper
   @include flex_center
@@ -129,50 +138,44 @@ section
   margin: 0 auto
   pointer-events: none
   #bottle_top
-    width: 598.125px
-    height: 598.125px
+    width: clamp(230px, 55vw, 598.125px)
     transform: rotate(8.508deg)
+    max-width: initial
     flex-shrink: 0
 
-#story
-  @include section_container
-
-  margin: 0 auto 121px
 #story #spiral
   margin-left: 20px
 #story #story_header_caption
   @include header_caption
-
-  width: 532px
+  margin-top: 20px
+  max-width: 532px
 
 #quality
-  @include section_container
-
-  position: relative
-  margin: 0 auto 121px
-  height: 600px
+  margin-top: 121px
   scroll-margin-top: 120px
-#quality #bottle_middle
-  position: absolute
-  top: 0
-  left: -123px
-  min-width: 524.55px
-  height: 524.55px
-  pointer-events: none
-  &.scroll_hidden
-    transition-delay: 0.5s
-    transform: rotate(8.508deg) translateX(-100px)
-  &.scroll_shown
-    transform: rotate(8.508deg) translateX(0px)
-#quality #spiral_center
-  position: absolute
-  top: 104px
-  left: 461px
-#quality #cards
-  position: absolute
-  top: 0
-  left: 0
-  margin-left: 303px
+  .container 
+    position: relative
+  #bottle_middle
+    position: absolute
+    top: 0
+    left: -123px
+    object-fit: contain
+    min-width: 524.55px
+    height: 524.55px
+    pointer-events: none
+    &.scroll_hidden
+      transition-delay: 0.5s
+      transform: rotate(8.508deg) translateX(-100px)
+    &.scroll_shown
+      transform: rotate(8.508deg) translateX(0px)
+  #spiral_center
+    position: relative
+    top: 104px
+    left: 157px
+  #cards
+    position: relative
+    height: 600px
+    margin-left: 303px
 #quality .card
   position: absolute
   display: flex
@@ -186,6 +189,7 @@ section
   border-radius: 22.323px
   background: $yellow
   box-shadow: 0px 3.641697883605957px 27.312734603881836px 0px rgba(0, 0, 0, 0.20)
+  z-index: 1
 
   &.scroll_hidden:not(.scroll_shown)
     top: 195px
@@ -238,71 +242,71 @@ section
   position: relative
   margin: 214px 0 121px
   scroll-margin-top: 80px
-#order .content
-  @include section_container
-  
-  position: relative
-  margin: 0 auto
-  padding-left: 92px
-#order #order_form
-  margin-top: 34px
-  display: flex
-  flex-direction: column
-  row-gap: 35px
-#order .order_input
-  color: $midgrey
-  width: 438px
-  height: 50px
-  padding: 15px
-  gap: 10px
-  border-radius: 5px
-  background: $lightgrey
-
-  font-feature-settings: 'clig' off, 'liga' off
-  font-family: Inter
-  font-size: 17px
-  font-style: normal
-  font-weight: 500
-  line-height: 32px
-  &::placeholder
-    color: $grey
-  &:nth-last-child(2)
-    margin-bottom: 4px
-  
-  &:nth-child(2)
-    transition-delay: 200ms
-  &:nth-child(3)
-    transition-delay: 400ms
-  &:nth-child(4)
-    transition-delay: 600ms
-  &:nth-child(5)
-    transition-delay: 800ms
-  &:nth-child(6)
-    transition-delay: 1000ms
-#order #spiral_bottom
-  position: absolute
-  top: 0
-  left: 0
-  z-index: -1
-#order #bottle_bottom_wrapper
-  position: absolute
-  top: 0
-  width: 100%
-  height: 100%
   overflow: hidden
-  pointer-events: none
-#order #bottle_bottom
-  display: block
-  position: absolute
-  top: -140px
-  right: -360px
-  min-width: 949.06px
-  height: 949.06px
-  &.scroll_hidden
-    transition-delay: 0.5s
-    transform: rotate(-80.68deg) translateY(20%)
-  &.scroll_shown
-    transform: rotate(-80.68deg) translateY(0px)
+  .content
+    position: relative
+  #order_form
+    margin-top: 40px
+    display: flex
+    flex-direction: column
+    row-gap: 30px
+  .order_input,
+  .order_textarea
+    color: $midgrey
+    width: clamp(263px, 80vw, 438px)
+    height: 50px
+    
+    padding: 15px
+    gap: 10px
+    border-radius: 5px
+    background: $lightgrey
+
+    font-feature-settings: 'clig' off, 'liga' off
+    font-family: Inter
+    font-size: 17px
+    font-style: normal
+    font-weight: 500
+    line-height: 32px
+    &::placeholder
+      color: $grey
+    &::last-child
+      margin-top: 4px
+    
+    &:nth-child(2)
+      transition-delay: 200ms
+    &:nth-child(3)
+      transition-delay: 400ms
+    &:nth-child(4)
+      transition-delay: 600ms
+    &:nth-child(5)
+      transition-delay: 800ms
+    &:nth-child(6)
+      transition-delay: 1000ms
+  .order_textarea
+    height: 150px
+    resize: none
+  #spiral_bottom
+    position: absolute
+    top: 0
+    left: 0
+    z-index: -1
+  #bottle_bottom
+    display: block
+    position: absolute
+    top: -140px
+    right: -360px
+    min-width: 949.06px
+    height: 949.06px
+    z-index: -1
+    &.scroll_hidden
+      transition-delay: 0.5s
+      transform: rotate(-80.68deg) translateY(20%)
+    &.scroll_shown
+      transform: rotate(-80.68deg) translateY(0px)
+  #bottle_bottom_wrapper
+    display: flex
+    justify-content: center
+    align-items: center
 
 #footer
   display: flex
@@ -315,13 +319,14 @@ section
 
   color: #FFF
   font-family: Montserrat
-  font-size: 20px
+  font-size: clamp(12px, 4vw, 20px)
   font-style: normal
   font-weight: 500
   line-height: normal
 
-.header
-  @include header
+#order, #story
+  .title
+    @include title
 .order_button
   display: inline-flex
   cursor: pointer
@@ -344,18 +349,11 @@ section
     font-weight: 800
     line-height: normal
     text-transform: uppercase
-  .order_arrow
-    @include flex_center
-
-    width: 48px
-    height: 48px
-    flex-shrink: 0
-    border: 3px solid $yellow
-    border-radius: 50%
 
 #spiral_top
   position: absolute
   top: 0
+  left: 0
   z-index: 2
   transition: 1s
   transform: translateX(0)
@@ -391,8 +389,129 @@ input::-webkit-inner-spin-button
   &.rotate
     transform: rotate(0deg)
 
-//Media 
 @media( prefers-reduced-motion )
   .scroll_hidden
     transition: none
-  
+
+.container 
+  margin: 0 auto
+  padding-left: 30px
+  padding-right: 30px
+
+//Adaptation
+@media screen and (min-width: 1200px)
+  .container 
+    max-width: 1080px
+
+@media screen and (max-width: 1200px)
+  .container 
+    max-width: 1024px
+
+@media screen and (max-width: 1024px)
+  .container 
+    max-width: 768px
+  #main 
+    #main_header_caption
+      margin-top: clamp(120px, 20vw, 210px)
+  #spiral_right
+    height: 400px
+    top: 380px
+  #order 
+    margin: 50px 0 121px
+    #bottle_bottom_wrapper
+      height: 300px
+      img 
+        object-fit: contain
+    #bottle_bottom
+      position: initial
+      min-width: initial
+      height: 400px
+      scale: 1.5
+    .content 
+      display: flex
+      flex-direction: column
+      align-items: center
+  #quality
+    .container
+      display: flex
+      flex-direction: column-reverse
+      justify-content: center
+    #cards 
+      margin-left: -35px
+    #bottle_middle
+      position: initial
+@media screen and (max-width: 768px)
+  .container 
+    max-width: 576px
+  #spiral_top
+    display: none
+  #main 
+    #main_header
+      letter-spacing: -3.436px
+  #spiral_right
+    height: 296.067px
+  #nav 
+    display: none
+  .header .menu__btn
+    display: flex
+  #quality
+    margin-top: 0 
+    #cards 
+      margin-left: -120px
+      scale: 0.7 
+      height: 500px
+  #order 
+    margin: 50px 0 0
+
+@media screen and (max-width: 576px)
+  .container 
+    max-width: 100%
+  #main
+    padding: 87px 92px 300px
+  #story 
+    .title
+      display: flex
+      align-items: center
+    #spiral
+      width: 60.787px
+      height: 64.424px
+  #quality
+    .container 
+      align-items: center
+    #bottle_middle
+      width: 297.495px
+      height: 297.495px 
+    #cards
+      scale: 0.5
+      height: 400px
+      margin-top: -50px
+      margin-left: -165px
+  #main_header_caption
+    font-size: 15px
+  #order 
+    #spiral_bottom
+      width: 198.805px
+      height: 210.7px
+      top: 20%
+    #bottle_bottom_wrapper
+      height: 200px
+    #bottle_bottom
+      scale: 1
+    #order_form
+      row-gap: 18px
+    .order_input,
+    .order_textarea
+      height: 30.023px
+      padding: 9.007px
+      font-size: 10.208px
+      line-height: 19.215px
+      &:nth-last-child(2)
+        margin-bottom: 18px
+    .order_textarea
+      height: 100px
+  .order_button 
+    margin: 0 auto
+    .order_text
+      font-size: 13px
+      width: 138.158px
+      height: 36.842px
