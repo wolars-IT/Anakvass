@@ -32,7 +32,7 @@
       "phoneNumber": "Phone number",
       "address": "Address (country, city, street, house, ZIP code)",
       "boxCount": "Quantity of boxes",
-      "comment": "Comment"
+      "comment": "Add a сomment"
     }
   }
 }
