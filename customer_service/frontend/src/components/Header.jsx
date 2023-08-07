@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from 'classnames';
 
 export default function Header({lngs, setLng}) {
   const [showMenu, setShowMenu] = useState(false);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const localLanguage = window.localStorage.getItem('language')
+    if (localLanguage !== null) {
+      setLng(JSON.parse(localLanguage))
+    }
+  }, [])
 
   const navigation = [
     { name: "", id: "main" },
@@ -25,6 +32,11 @@ export default function Header({lngs, setLng}) {
   let rightLngButtonClassNames = classNames("switch_half", "right_half", {
     active: lngs[1].isActive,
   });
+
+  function changeLanguage(lng) {
+    setLng(lng);
+    window.localStorage.setItem('language', JSON.stringify(lng));
+  }
 
   const toggleMenu = () => {
     setShowMenu(prev => !prev);
@@ -69,8 +81,8 @@ export default function Header({lngs, setLng}) {
         </div>
 
         <div id="language_switch">
-          <button className={leftLngButtonClassNames} onClick={() => setLng("uk")}>UK</button>
-          <button className={rightLngButtonClassNames} onClick={() => setLng("en")}>EN</button>
+          <button className={leftLngButtonClassNames} onClick={() => changeLanguage("uk")}>UK</button>
+          <button className={rightLngButtonClassNames} onClick={() => changeLanguage("en")}>EN</button>
         </div>
       </div>
     </header>
