@@ -43,17 +43,15 @@ export default function Header({lngs, setLng}) {
     document.body.classList.toggle('overlay');
   }
 
-  const navigationList = navigation.map(({id, name}, i) => {
-    const classes = classNames("nav_item", {"active": !i});
-
+  const navigationList = navigation.map(navItem => {
     return (
       <a
-        key={id}
-        className={classes}
-        href={"#" + id}
+        key={navItem.id}
+        className="nav_item"
+        href={"#" + navItem.id}
         onClick={showMenu ? toggleMenu : null}
       >
-        {name}
+        {navItem.name}
       </a>
     )
   })
