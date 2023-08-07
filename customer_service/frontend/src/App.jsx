@@ -54,10 +54,11 @@ function App() {
   // {t("")}
   return (
     <>
-      <Header 
-        lngs={lngs} 
-        setLng={setLng} 
-        />
+      <Header
+        lngs={lngs}
+        setLng={setLng}
+      />
+
       <section id="main">
         <div className="container">
           <div className="content">
@@ -134,9 +135,9 @@ function App() {
               {t("order.header")}
             </div>
 
-            <form action="" id="order_form">
+            <form action="" id="order_form" className="scroll_hidden">
               <input
-                className="order_input scroll_hidden from_left2"
+                className="order_input"
                 name="full_name"
                 type="text"
                 placeholder={t("order.formPlaceholder.fullName")}
@@ -144,7 +145,7 @@ function App() {
                 maxLength="255"
               />
               <input
-                className="order_input scroll_hidden from_left2"
+                className="order_input"
                 name="email"
                 type="email"
                 placeholder={t("order.formPlaceholder.email")}
@@ -153,7 +154,7 @@ function App() {
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               />
               <input
-                className="order_input scroll_hidden from_left2"
+                className="order_input"
                 name="phone_number"
                 type="text"
                 placeholder={t("order.formPlaceholder.phoneNumber")}
@@ -162,7 +163,7 @@ function App() {
                 maxLength="15"
               />
               <input
-                className="order_input scroll_hidden from_left2"
+                className="order_input"
                 name="address"
                 type="text"
                 placeholder={t("order.formPlaceholder.address")}
@@ -170,7 +171,7 @@ function App() {
                 maxLength="425"
               />
               <input
-                className="order_input scroll_hidden from_left2"
+                className="order_input"
                 name="box_count"
                 type="number"
                 placeholder={t("order.formPlaceholder.boxCount")}
@@ -179,13 +180,13 @@ function App() {
                 required
               />
               <textarea
-                className="order_textarea scroll_hidden from_left2"
+                className="order_textarea"
                 name="comment"
                 type="text"
                 placeholder={t("order.formPlaceholder.comment")}
                 maxLength="255"
               ></textarea>
-              <button className="order_button scroll_hidden from_left2">
+              <button className="order_button">
                 <div className="order_text">{t("orderButton")}</div>
               </button>
             </form>

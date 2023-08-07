@@ -257,6 +257,11 @@ body
     display: flex
     flex-direction: column
     row-gap: 30px
+    &.scroll_hidden
+      opacity: 1
+    &.scroll_hidden:not(.scroll_shown) *
+      opacity: 0
+      transform: translateX(-50px)
   .order_input,
   .order_textarea
     color: $midgrey
@@ -279,6 +284,7 @@ body
     &::last-child
       margin-top: 4px
     
+    transition: 1s
     &:nth-child(2)
       transition-delay: 200ms
     &:nth-child(3)
@@ -291,6 +297,7 @@ body
       transition-delay: 1000ms
   .order_textarea
     height: 150px
+    line-height: normal
     resize: none
   #spiral_bottom
     position: absolute
@@ -338,8 +345,6 @@ body
   display: inline-flex
   cursor: pointer
   margin-right: auto
-  &:hover
-    opacity: 0.8
   .order_text
     @include flex_center
 
@@ -356,6 +361,9 @@ body
     font-weight: 800
     line-height: normal
     text-transform: uppercase
+    &:hover
+      background: transparentize($yellow, 0.2)
+
 
 #spiral_top
   position: absolute

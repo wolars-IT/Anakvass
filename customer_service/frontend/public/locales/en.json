@@ -1,7 +1,7 @@
 {
   "nav": {
     "main": "Main",
-    "story": "History",
+    "story": "Story",
     "quality": "Quality",
     "order": "Order"
   },
@@ -11,8 +11,8 @@
     "headerCaption": "An innovative naturally fermented\nbeverage with a pineapple flavor"
   },
   "story": {
-    "header": "History",
-    "headerCaption": "Once, I accidentally came across an article about how you can even make a super-healthy fermented drink from pineapple peels at home. Armed with a sharp knife, clean bottles, pineapple, and enthusiasm, I got to work. And within three days, it was ready, a masterpiece of fermentation — Anakvass."
+    "header": "Story",
+    "headerCaption": "Once, I accidentally came across an article about how you can make a super-healthy fermented drink from pineapple peels at home. Armed with a sharp knife, clean bottles, pineapple, and enthusiasm, I got to work. And within three days, it was ready, a masterpiece of fermentation — Anakvass."
   },
   "quality": {
     "card1": "Real bubbles",
