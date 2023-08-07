@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
-import { useTranslation } from "react-i18next";
 
 import { watchAnimationsOnScroll } from "./utils/watchers/watchAnimationsOnScroll";
 import { watchNavbarScroll } from "./utils/watchers/watchNavbarScroll";
@@ -14,7 +13,6 @@ import spiralright from "./assets/svg/spiralright.svg";
 import spiral from "./assets/svg/spiral.svg";
 import spiralbottom from "./assets/svg/spiralbottom.svg";
 import spiralcenter from "./assets/svg/spiralcenter.svg";
-import arrowdown from "./assets/svg/arrowdown.svg";
 import schield from "./assets/svg/schield.svg";
 import temperature from "./assets/svg/temperature.svg";
 import plant from "./assets/svg/plant.svg";
@@ -26,7 +24,6 @@ function App() {
     {code: "uk", isActive: true},
     {code: "en", isActive: false}
   ]);
-  const [showMenu, setShowMenu] = useState(false);
 
   const { t, i18n } = useTranslation();
 
@@ -60,8 +57,6 @@ function App() {
       <Header 
         lngs={lngs} 
         setLng={setLng} 
-        showMenu={showMenu} 
-        setShowMenu={setShowMenu} 
         />
       <section id="main">
         <div className="container">

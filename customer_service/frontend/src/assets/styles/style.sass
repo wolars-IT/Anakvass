@@ -21,12 +21,14 @@
 *
   scroll-behavior: smooth
 
-html, body 
-  overflow-x: hidden
-
 body 
   background: $background
+  &.overlay
+    overflow: hidden
 
+#root
+  overflow: hidden
+      
 .header 
   position: absolute
   top: 25px
@@ -80,7 +82,6 @@ body
   border-radius: 19.5px
   margin-left: auto
   overflow: hidden
-  z-index: 2
   .switch_half
     width: 26px
     display: flex
@@ -113,42 +114,47 @@ body
     position: relative
     display: flex
     justify-content: center
-#main #main_header
-  color: $yellow
-  font-family: Impact
-  font-size: clamp(80px, 25vw, 266.551px)
-  font-style: normal
-  font-weight: 400
-  line-height: normal
-  letter-spacing: -9.329px
-#main #main_header_caption
-  @include header_caption
+  .title__wrapper
+    position: relative
+    margin-top: 50px
+  #main_header
+    color: $yellow
+    font-family: Impact
+    font-size: clamp(80px, 25vw, 266.551px)
+    font-style: normal
+    font-weight: 400
+    line-height: normal
+    letter-spacing: -9.329px
+  #main_header_caption
+    @include header_caption
 
-  white-space: pre
-  line-height: 127%
-  letter-spacing: 0.17px
-  margin-bottom: 29px
-#main #bottle_wrapper
-  @include flex_center
+    white-space: pre
+    line-height: 127%
+    letter-spacing: 0.17px
+    margin-bottom: 29px
+  #bottle_wrapper
+    @include flex_center
 
-  top: -25px
-  position: absolute
-  left: 0
-  right: 0
-  margin: 0 auto
-  pointer-events: none
-  #bottle_top
-    width: clamp(230px, 55vw, 598.125px)
-    transform: rotate(8.508deg)
-    max-width: initial
-    flex-shrink: 0
+    top: -25px
+    position: absolute
+    left: 0
+    right: 0
+    margin: 0 auto
+    pointer-events: none
+    #bottle_top
+      width: clamp(230px, 55vw, 598.125px)
+      transform: rotate(8.508deg)
+      max-width: initial
+      flex-shrink: 0
 
-#story #spiral
-  margin-left: 20px
-#story #story_header_caption
-  @include header_caption
-  margin-top: 20px
-  max-width: 532px
+#story 
+  scroll-margin-top: 100px
+  #spiral
+    margin-left: 20px
+  #story_header_caption
+    @include header_caption
+    margin-top: 20px
+    max-width: 532px
 
 #quality
   margin-top: 121px
@@ -241,8 +247,9 @@ body
 #order
   position: relative
   margin: 214px 0 121px
-  scroll-margin-top: 80px
-  overflow: hidden
+  scroll-margin-top: 100px
+  .container
+    overflow: hidden
   .content
     position: relative
   #order_form
@@ -446,14 +453,65 @@ input::-webkit-inner-spin-button
   #spiral_top
     display: none
   #main 
+    .title__wrapper
+      margin-top: 50px
     #main_header
       letter-spacing: -3.436px
   #spiral_right
     height: 296.067px
   #nav 
-    display: none
-  .header .menu__btn
-    display: flex
+    position: fixed
+    justify-content: flex-start
+    flex-direction: column
+    top: 0
+    left: 0
+    height: 100vh
+    width: 100%
+    gap: 25px
+    padding: 120px 30px 50px
+    background-color: #E0AB21
+    transform: translate(-100%)
+    transition: transform 0.5s
+    &.open 
+      transform: translate(0)
+    .nav_item,
+    .nav_item.active,
+    .nav_item:hover
+      color: white
+    .nav_item
+      margin: 0 auto
+  .header 
+    .container
+      height: 30px
+    .menu__btn
+      display: flex
+      z-index: 1
+      svg,
+      path
+        transition: all 0.5s
+      svg 
+        width: 60px
+      &.close 
+        position: fixed
+        top: 50px
+        svg 
+          path
+            stroke: white
+            stroke-width: 3
+          &:nth-child(1),
+          &:nth-child(3)
+            width: 50px
+
+          &:nth-child(1)
+            rotate: 45deg
+
+          &:nth-child(2)
+            display: none
+          
+          &:nth-child(3)
+            rotate: -45deg
+            position: absolute
+            transform: translate(-1px, -1px)
   #quality
     margin-top: 0 
     #cards 
@@ -478,14 +536,32 @@ input::-webkit-inner-spin-button
   #quality
     .container 
       align-items: center
+    #cards
+      position: relative
+      display: flex
+      justify-content: center
+      flex-direction: column
+      gap: 30px
+      height: 700px
+      margin-left: 0
+      .card 
+        position: initial
+        top: 0
+        left: 0
+        &:nth-child(odd)
+          transform: rotate(5deg)
+        &:nth-child(even)
+          transform: rotate(-5deg)
+      #spiral_center
+        position: absolute
+        top: auto
+        left: auto
+        scale: 2.5
+        rotate: 80deg
     #bottle_middle
       width: 297.495px
       height: 297.495px 
-    #cards
-      scale: 0.5
-      height: 400px
-      margin-top: -50px
-      margin-left: -165px
+          
   #main_header_caption
     font-size: 15px
   #order 
@@ -501,9 +577,9 @@ input::-webkit-inner-spin-button
       row-gap: 18px
     .order_input,
     .order_textarea
-      height: 30.023px
-      padding: 9.007px
-      font-size: 10.208px
+      height: 34px
+      padding: 9px
+      font-size: 12px
       line-height: 19.215px
       &:nth-last-child(2)
         margin-bottom: 18px
