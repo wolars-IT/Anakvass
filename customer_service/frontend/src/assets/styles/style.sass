@@ -114,38 +114,38 @@ body
     position: relative
     display: flex
     justify-content: center
-  .title__wrapper
-    position: relative
-    margin-top: 50px
-  #main_header
-    color: $yellow
-    font-family: Impact
-    font-size: clamp(80px, 25vw, 266.551px)
-    font-style: normal
-    font-weight: 400
-    line-height: normal
-    letter-spacing: -9.329px
-  #main_header_caption
-    @include header_caption
+#main .title__wrapper
+  position: relative
+  margin-top: 50px
+#main #main_header
+  color: $yellow
+  font-family: Impact
+  font-size: clamp(80px, 25vw, 266.551px)
+  font-style: normal
+  font-weight: 400
+  line-height: normal
+  letter-spacing: -9.329px
+#main #main_header_caption
+  @include header_caption
 
-    white-space: pre
-    line-height: 127%
-    letter-spacing: 0.17px
-    margin-bottom: 29px
-  #bottle_wrapper
-    @include flex_center
+  white-space: pre
+  line-height: 127%
+  letter-spacing: 0.17px
+  margin-bottom: 29px
+#main #bottle_wrapper
+  @include flex_center
 
-    top: -25px
-    position: absolute
-    left: 0
-    right: 0
-    margin: 0 auto
-    pointer-events: none
-    #bottle_top
-      width: clamp(230px, 55vw, 598.125px)
-      transform: rotate(8.508deg)
-      max-width: initial
-      flex-shrink: 0
+  top: -25px
+  position: absolute
+  left: 0
+  right: 0
+  margin: 0 auto
+  pointer-events: none
+  #bottle_top
+    width: clamp(230px, 55vw, 598.125px)
+    transform: rotate(8.508deg)
+    max-width: initial
+    flex-shrink: 0
 
 #story 
   scroll-margin-top: 100px
@@ -161,27 +161,27 @@ body
   scroll-margin-top: 120px
   .container 
     position: relative
-  #bottle_middle
-    position: absolute
-    top: 0
-    left: -123px
-    object-fit: contain
-    min-width: 524.55px
-    height: 524.55px
-    pointer-events: none
-    &.scroll_hidden
-      transition-delay: 0.5s
-      transform: rotate(8.508deg) translateX(-100px)
-    &.scroll_shown
-      transform: rotate(8.508deg) translateX(0px)
-  #spiral_center
-    position: relative
-    top: 104px
-    left: 157px
-  #cards
-    position: relative
-    height: 600px
-    margin-left: 303px
+#quality #bottle_middle
+  position: absolute
+  top: 0
+  left: -123px
+  object-fit: contain
+  min-width: 524.55px
+  height: 524.55px
+  pointer-events: none
+  &.scroll_hidden
+    transition-delay: 0.5s
+    transform: rotate(8.508deg) translateX(-100px)
+  &.scroll_shown
+    transform: rotate(8.508deg) translateX(0px)
+#quality #spiral_center
+  position: relative
+  top: 104px
+  left: 157px
+#quality #cards
+  position: relative
+  height: 600px
+  margin-left: 303px
 #quality .card
   position: absolute
   display: flex
@@ -201,11 +201,24 @@ body
     top: 195px
     left: 280px
     transform: rotate(0deg)
+    
+  .title
+    color: #FFF
+    font-family: Montserrat
+    font-size: 18px
+    font-style: normal
+    font-weight: 700
+    line-height: normal
+    margin: 7.28px 0
+  .text
+    color: #FFF
+    text-align: center
+    font-family: Montserrat
+    font-size: 15px
+    font-style: normal
+    font-weight: 500
+    line-height: normal
 
-  // &:nth-child(1)
-  //   top: -10px
-  //   left: -5px
-  //   transform: rotate(9.173deg)
   &:nth-child(1)
     top: 32px
     left: 272px
@@ -226,23 +239,6 @@ body
     left: 297px
     transform: rotate(3.247deg)
     transition-delay: 800ms
-    
-  .title
-    color: #FFF
-    font-family: Montserrat
-    font-size: 18px
-    font-style: normal
-    font-weight: 700
-    line-height: normal
-    margin: 7.28px 0
-  .text
-    color: #FFF
-    text-align: center
-    font-family: Montserrat
-    font-size: 15px
-    font-style: normal
-    font-weight: 500
-    line-height: normal
 
 #order
   position: relative
@@ -252,72 +248,71 @@ body
     overflow: hidden
   .content
     position: relative
-  #order_form
-    margin-top: 40px
-    display: flex
-    flex-direction: column
-    row-gap: 30px
-    &.scroll_hidden
-      opacity: 1
-    &.scroll_hidden:not(.scroll_shown) *
-      opacity: 0
-      transform: translateX(-50px)
-  .order_input,
-  .order_textarea
-    color: $midgrey
-    width: clamp(263px, 80vw, 438px)
-    height: 50px
-    
-    padding: 15px
-    gap: 10px
-    border-radius: 5px
-    background: $lightgrey
+#order #order_form
+  margin-top: 40px
+  display: flex
+  flex-direction: column
+  row-gap: 30px
+  &.scroll_hidden
+    opacity: 1
+  &.scroll_hidden:not(.scroll_shown) *
+    opacity: 0
+    transform: translateX(-50px)
+#order .order_input, .order_textarea
+  color: $midgrey
+  width: clamp(263px, 80vw, 438px)
+  height: 50px
+  
+  padding: 15px
+  gap: 10px
+  border-radius: 5px
+  background: $lightgrey
 
-    font-feature-settings: 'clig' off, 'liga' off
-    font-family: Inter
-    font-size: 17px
-    font-style: normal
-    font-weight: 500
-    line-height: 32px
-    &::placeholder
-      color: $grey
-    &::last-child
-      margin-top: 4px
-    
-    transition: 1s
-    &:nth-child(2)
-      transition-delay: 200ms
-    &:nth-child(3)
-      transition-delay: 400ms
-    &:nth-child(4)
-      transition-delay: 600ms
-    &:nth-child(5)
-      transition-delay: 800ms
-    &:nth-child(6)
-      transition-delay: 1000ms
-  .order_textarea
-    height: 150px
-    line-height: normal
-    resize: none
-  #spiral_bottom
-    position: absolute
-    top: 0
-    left: 0
-    z-index: -1
-  #bottle_bottom
-    display: block
-    position: absolute
-    top: -140px
-    right: -360px
-    min-width: 949.06px
-    height: 949.06px
-    z-index: -1
-    &.scroll_hidden
-      transition-delay: 0.5s
-      transform: rotate(-80.68deg) translateY(20%)
-    &.scroll_shown
-      transform: rotate(-80.68deg) translateY(0px)
-  #bottle_bottom_wrapper
+  font-feature-settings: 'clig' off, 'liga' off
+  font-family: Inter
+  font-size: 17px
+  font-style: normal
+  font-weight: 500
+  line-height: 32px
+  &::placeholder
+    color: $grey
+  &::last-child
+    margin-top: 4px
+  
+  transition: 1s
+  &:nth-child(2)
+    transition-delay: 200ms
+  &:nth-child(3)
+    transition-delay: 400ms
+  &:nth-child(4)
+    transition-delay: 600ms
+  &:nth-child(5)
+    transition-delay: 800ms
+  &:nth-child(6)
+    transition-delay: 1000ms
+#order .order_textarea
+  height: 150px
+  line-height: normal
+  resize: none
+#order #spiral_bottom
+  position: absolute
+  top: 0
+  left: 0
+  z-index: -1
+#order #bottle_bottom
+  display: block
+  position: absolute
+  top: -140px
+  right: -360px
+  min-width: 949.06px
+  height: 949.06px
+  z-index: -1
+  &.scroll_hidden
+    transition-delay: 0.5s
+    transform: rotate(-80.68deg) translateY(20%)
+  &.scroll_shown
+    transform: rotate(-80.68deg) translateY(0px)
+#order #bottle_bottom_wrapper
     display: flex
     justify-content: center
     align-items: center
