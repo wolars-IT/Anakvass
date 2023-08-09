@@ -116,7 +116,7 @@ body
 #main .title__wrapper
   position: relative
   margin-top: 50px
-#main #main_header
+#main .main_header
   color: $yellow
   font-family: Impact
   font-size: clamp(80px, 25vw, 266.551px)
@@ -124,14 +124,14 @@ body
   font-weight: 400
   line-height: normal
   letter-spacing: -9.329px
-#main #main_header_caption
+#main .main_header_caption
   @include header_caption
 
   white-space: pre
   line-height: 127%
   letter-spacing: 0.17px
   margin-bottom: 29px
-#main #bottle_wrapper
+#main .bottle_wrapper
   @include flex_center
 
   top: -25px
@@ -140,7 +140,7 @@ body
   right: 0
   margin: 0 auto
   pointer-events: none
-  #bottle_top
+  .bottle_top
     width: clamp(230px, 55vw, 598.125px)
     transform: rotate(8.508deg)
     max-width: initial
@@ -148,9 +148,9 @@ body
 
 #story 
   scroll-margin-top: 100px
-  #spiral
+  .spiral
     margin-left: 20px
-  #story_header_caption
+  .story_header_caption
     @include header_caption
     margin-top: 20px
     max-width: 532px
@@ -160,7 +160,7 @@ body
   scroll-margin-top: 120px
   .container 
     position: relative
-#quality #bottle_middle
+#quality .bottle_middle
   position: absolute
   top: 0
   left: -123px
@@ -173,11 +173,11 @@ body
     transform: rotate(8.508deg) translateX(-100px)
   &.scroll_shown
     transform: rotate(8.508deg) translateX(0px)
-#quality #spiral_center
+#quality .spiral_center
   position: relative
   top: 104px
   left: 157px
-#quality #cards
+#quality .cards
   position: relative
   height: 600px
   margin-left: 303px
@@ -247,7 +247,7 @@ body
     overflow: hidden
   .content
     position: relative
-#order #order_form
+#order .order_form
   margin-top: 40px
   display: flex
   flex-direction: column
@@ -293,12 +293,12 @@ body
   height: 150px
   line-height: normal
   resize: none
-#order #spiral_bottom
+#order .spiral_bottom
   position: absolute
   top: 0
   left: 0
   z-index: -1
-#order #bottle_bottom
+#order .bottle_bottom
   display: block
   position: absolute
   top: -140px
@@ -311,12 +311,12 @@ body
     transform: rotate(-80.68deg) translateY(20%)
   &.scroll_shown
     transform: rotate(-80.68deg) translateY(0px)
-#order #bottle_bottom_wrapper
+#order .bottle_bottom_wrapper
     display: flex
     justify-content: center
     align-items: center
 
-#footer
+.footer
   display: flex
   width: 100%
   height: 115px
@@ -359,7 +359,7 @@ body
       background: transparentize($yellow, 0.2)
 
 
-#spiral_top
+.spiral_top
   position: absolute
   top: 0
   left: 0
@@ -369,7 +369,7 @@ body
   &.hidden
     opacity: 0
     transform: translateX(-100%)
-#spiral_right
+.spiral_right
   position: absolute
   top: 240px
   right: 0
@@ -420,18 +420,18 @@ input::-webkit-inner-spin-button
   .container 
     max-width: 768px
   #main 
-    #main_header_caption
+    .main_header_caption
       margin-top: clamp(120px, 20vw, 210px)
-  #spiral_right
+  .spiral_right
     height: 400px
     top: 380px
   #order 
     margin: 50px 0 121px
-    #bottle_bottom_wrapper
+    .bottle_bottom_wrapper
       height: 300px
       img 
         object-fit: contain
-    #bottle_bottom
+    .bottle_bottom
       position: initial
       min-width: initial
       height: 400px
@@ -445,21 +445,21 @@ input::-webkit-inner-spin-button
       display: flex
       flex-direction: column-reverse
       justify-content: center
-    #cards 
+    .cards 
       margin-left: -35px
-    #bottle_middle
+    .bottle_middle
       position: initial
 @media screen and (max-width: 768px)
   .container 
     max-width: 576px
-  #spiral_top
+  .spiral_top
     display: none
   #main 
     .title__wrapper
       margin-top: 50px
-    #main_header
+    .main_header
       letter-spacing: -3.436px
-  #spiral_right
+  .spiral_right
     height: 296.067px
   #nav 
     position: fixed
@@ -471,7 +471,7 @@ input::-webkit-inner-spin-button
     width: 100%
     gap: 25px
     padding: 120px 30px 50px
-    background-color: #E0AB21
+    background-color: $yellow
     transform: translate(-100%)
     transition: transform 0.5s
     &.open 
@@ -516,7 +516,7 @@ input::-webkit-inner-spin-button
             transform: translate(-1px, -1px)
   #quality
     margin-top: 0 
-    #cards 
+    .cards 
       margin-left: -120px
       scale: 0.7 
       height: 500px
@@ -532,13 +532,13 @@ input::-webkit-inner-spin-button
     .title
       display: flex
       align-items: center
-    #spiral
+    .spiral
       width: 60.787px
       height: 64.424px
   #quality
     .container 
       align-items: center
-    #cards
+    .cards
       position: relative
       display: flex
       justify-content: center
@@ -554,28 +554,28 @@ input::-webkit-inner-spin-button
           transform: rotate(5deg)
         &:nth-child(even)
           transform: rotate(-5deg)
-      #spiral_center
+      .spiral_center
         position: absolute
         top: auto
         left: auto
         scale: 2.5
         rotate: 80deg
-    #bottle_middle
+    .bottle_middle
       width: 297.495px
       height: 297.495px 
           
-  #main_header_caption
+  .main_header_caption
     font-size: 15px
   #order 
-    #spiral_bottom
+    .spiral_bottom
       width: 198.805px
       height: 210.7px
       top: 20%
-    #bottle_bottom_wrapper
+    .bottle_bottom_wrapper
       height: 200px
-    #bottle_bottom
+    .bottle_bottom
       scale: 1
-    #order_form
+    .order_form
       row-gap: 18px
     .order_input,
     .order_textarea

@@ -32,7 +32,7 @@ function App() {
     watchSectionsScroll()
     watchAnimationsOnScroll()
   }, []);
-  
+
   const setLng = (lngCode) => {
     const nextLngs = lngs.map((lng) => {
       if (lng.code == lngCode) {
@@ -63,30 +63,30 @@ function App() {
         <div className="container">
           <div className="content">
             <div className="title__wrapper">
-              <div id="bottle_wrapper">
-              <img src={bottle} id="bottle_top" />
+              <div className="bottle_wrapper">
+              <img src={bottle} className="bottle_top" />
               </div>
 
-              <h1 id="main_header">{t("main.header")}</h1>
+              <h1 className="main_header">{t("main.header")}</h1>
             </div>
-            <div id="main_header_caption">{t("main.headerCaption")}</div>
+            <div className="main_header_caption">{t("main.headerCaption")}</div>
             <a className="order_button" href="#order">
               <div className="order_text">{t("orderButton")}</div>
             </a>
           </div>
         </div>
 
-        <img src={spiraltop} id="spiral_top" />
-        <img src={spiralright} id="spiral_right" />
+        <img src={spiraltop} className="spiral_top" />
+        <img src={spiralright} className="spiral_right" />
       </section>
 
       <section id="story">
         <div className="container">
           <div className="title scroll_hidden from_left1">
             {t("story.header")}
-            <img src={spiral} id="spiral" className="scroll_hidden rotate" />
+            <img src={spiral} className="spiral scroll_hidden rotate" />
           </div>
-          <div id="story_header_caption" className="scroll_hidden from_left2">
+          <div className="story_header_caption scroll_hidden from_left2">
             {t("story.headerCaption")}
           </div>
         </div>
@@ -94,9 +94,9 @@ function App() {
 
       <section id="quality">
         <div className="container">
-          <img src={bottle} id="bottle_middle" className="scroll_hidden" />
+          <img src={bottle} className="bottle_middle scroll_hidden" />
 
-          <div id="cards">
+          <div className="cards">
             <div className="card scroll_hidden">
               <img src={bubbles} />
               <div className="title">{t("quality.card1")}</div>
@@ -121,8 +121,7 @@ function App() {
 
             <img
               src={spiralcenter}
-              id="spiral_center"
-              className="scroll_hidden rotate"
+              className="spiral_center scroll_hidden rotate"
             />
           </div>
         </div>
@@ -135,7 +134,7 @@ function App() {
               {t("order.header")}
             </div>
 
-            <form action="" id="order_form" className="scroll_hidden">
+            <form action="" className="order_form scroll_hidden">
               <input
                 className="order_input"
                 name="full_name"
@@ -192,14 +191,13 @@ function App() {
             </form>
           </div>
 
-          <div id="bottle_bottom_wrapper">
-            <img src={bottle} id="bottle_bottom" className="scroll_hidden" />
+          <div className="bottle_bottom_wrapper">
+            <img src={bottle} className="bottle_bottom scroll_hidden" />
           </div>
 
           <img
             src={spiralbottom}
-            id="spiral_bottom"
-            className="scroll_hidden from_left3"
+            className="spiral_bottom scroll_hidden from_left3"
           />
         </div>
       </section>

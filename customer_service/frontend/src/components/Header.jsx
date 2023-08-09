@@ -14,6 +14,15 @@ export default function Header({lngs, setLng}) {
     }
   }, [])
 
+  const changeLanguage = (lng) => {
+    setLng(lng);
+    window.localStorage.setItem('language', JSON.stringify(lng));
+  }
+  const toggleMenu = () => {
+    setShowMenu(prev => !prev);
+    document.body.classList.toggle('overlay');
+  }
+
   const navigation = [
     { name: "", id: "main" },
     { name: "", id: "story" },
@@ -38,15 +47,6 @@ export default function Header({lngs, setLng}) {
       </a>
     )
   })
-
-  const changeLanguage = (lng) => {
-    setLng(lng);
-    window.localStorage.setItem('language', JSON.stringify(lng));
-  }
-  const toggleMenu = () => {
-    setShowMenu(prev => !prev);
-    document.body.classList.toggle('overlay');
-  }
 
   const navClasses = classNames({"open": showMenu});
   const menuBtnClasses = classNames("menu__btn", {"close": showMenu});
