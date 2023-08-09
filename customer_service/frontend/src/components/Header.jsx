@@ -2,21 +2,39 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from 'classnames';
 
-export default function Header({lngs, setLng}) {
-  const { t } = useTranslation();
+export default function Header() {
+  const { t, i18n } = useTranslation();
 
   const [showMenu, setShowMenu] = useState(false);
+  const [lngs, setLngs] = useState([
+    {code: "uk", isActive: true},
+    {code: "en", isActive: false}
+  ]);
 
   useEffect(() => {
     const localLanguage = window.localStorage.getItem('language')
     if (localLanguage !== null) {
-      setLng(JSON.parse(localLanguage))
+      changeLanguage(JSON.parse(localLanguage))
     }
   }, [])
 
-  const changeLanguage = (lng) => {
-    setLng(lng);
-    window.localStorage.setItem('language', JSON.stringify(lng));
+  const changeLanguage = (lngCode) => {
+    const nextLngs = lngs.map((lng) => {
+      if (lng.code == lngCode) {
+        return {
+          ...lng,
+          isActive: true
+        }
+      }
+      return {
+        ...lng,
+        isActive: false
+      }
+    })
+
+    setLngs(nextLngs)
+    i18n.changeLanguage(lngCode);
+    window.localStorage.setItem('language', JSON.stringify(lngCode));
   }
   const toggleMenu = () => {
     setShowMenu(prev => !prev);
@@ -29,24 +47,17 @@ export default function Header({lngs, setLng}) {
     { name: "", id: "quality" },
     // { name: "", id: "contents" },
     { name: "", id: "order" },
-  ].map(item => {
-    return {
-      ...item,
-      name: t("nav." + item.id)
-    }
-  });
-  const navigationList = navigation.map(navItem => {
-    return (
-      <a
-        key={navItem.id}
-        className="nav_item"
-        href={"#" + navItem.id}
-        onClick={showMenu ? toggleMenu : null}
-      >
-        {navItem.name}
-      </a>
-    )
-  })
+  ]
+  const navigationList = navigation.map(navItem => 
+    <a
+      key={navItem.id}
+      className="nav_item"
+      href={"#" + navItem.id}
+      onClick={showMenu ? toggleMenu : null}
+    >
+      {t("nav." + navItem.id)}
+    </a>
+  )
 
   const navClasses = classNames({"open": showMenu});
   const menuBtnClasses = classNames("menu__btn", {"close": showMenu});
@@ -76,7 +87,7 @@ export default function Header({lngs, setLng}) {
           </svg>
         </div>
 
-        <div id="language_switch">
+        <div className="language_switch">
           <button className={leftLngButtonClassNames} onClick={() => changeLanguage("uk")}>UK</button>
           <button className={rightLngButtonClassNames} onClick={() => changeLanguage("en")}>EN</button>
         </div>

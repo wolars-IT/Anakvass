@@ -20,12 +20,7 @@ import bubbles from "./assets/svg/bubbles.svg";
 import bottle from "./assets/img/bottle.png"
 
 function App() {
-  const { t, i18n } = useTranslation();
-
-  const [lngs, setLngs] = useState([
-    {code: "uk", isActive: true},
-    {code: "en", isActive: false}
-  ]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     watchNavbarScroll()
@@ -33,31 +28,9 @@ function App() {
     watchAnimationsOnScroll()
   }, []);
 
-  const setLng = (lngCode) => {
-    const nextLngs = lngs.map((lng) => {
-      if (lng.code == lngCode) {
-        return {
-          ...lng,
-          isActive: true
-        }
-      }
-      return {
-        ...lng,
-        isActive: false
-      }
-    })
-
-    i18n.changeLanguage(lngCode);
-    setLngs(nextLngs)
-  }
-
-  // {t("")}
   return (
     <>
-      <Header
-        lngs={lngs}
-        setLng={setLng}
-      />
+      <Header />
 
       <section id="main">
         <div className="container">
