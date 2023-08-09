@@ -1,34 +1,25 @@
 @import "./variables"
 
-@mixin title
+.container 
+  margin: 0 auto
+  padding-left: 30px
+  padding-right: 30px
+.content
+  position: relative
+.title
   color: $yellow
   font-family: Impact
-  font-size: clamp(41.95px, 13vw, 120px)
   font-style: normal
   font-weight: 400
   line-height: normal
-  text-transform: uppercase
-@mixin header_caption
+.caption
   color: $textgrey
   font-family: Montserrat
   font-size: 17px
   font-style: normal
   font-weight: 500
   line-height: normal
-  @media screen and (max-width: 576px)
-    font-size: 13px
 
-*
-  scroll-behavior: smooth
-
-body 
-  background: $background
-  &.overlay
-    overflow: hidden
-
-#root
-  overflow: hidden
-      
 .header 
   position: absolute
   top: 25px
@@ -36,31 +27,22 @@ body
   padding: 25px 0
   transition: background-color 0.3s, box-shadow 0.3s
   z-index: 999
-  &.fixed
+  &_fixed
     position: fixed
     top: 0
     background-color: $background
     box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.20)
-  .container 
-    display: flex
-    justify-content: space-between
-    align-items: center
-  .menu
-    &__btn 
-      display: none
-      flex-direction: column
-      cursor: pointer
-      gap: 5px
-
-#nav
-  display: flex
-  justify-content: center
-  gap: 48px
+.nav
+  height: 22.75px
   margin: 0 auto
   flex: 1
   z-index: 1
   transition: 0.5s
-  .nav_item
+  &__list
+    display: flex
+    justify-content: center
+    gap: 48px
+  &__item
     color: $textgrey
     font-family: Montserrat
     font-size: 17px
@@ -68,20 +50,27 @@ body
     font-weight: 600
     line-height: normal
     cursor: pointer
-  .nav_item:hover
+  &__item:hover
     color: $yellow
-  .nav_item.active
+  &__item_active
     color: $yellow
     text-decoration: wavy underline
     text-underline-offset: 4px
-
-#language_switch
+.menu-button
+  display: none
+  flex-direction: column
+  cursor: pointer
+  gap: 5px
+.language-switch
+  position: absolute
+  top: 25px
+  right: 100px
   display: flex
   height: 22.75px
   border-radius: 19.5px
   margin-left: auto
   overflow: hidden
-  .switch_half
+  &__half
     width: 26px
     display: flex
     align-items: center
@@ -99,89 +88,96 @@ body
     &:hover
       opacity: 0.8
       color: $white
-    &.active
-      background: $yellow
-      color: $white
-  .left_half
+  &__half_active
+    background: $yellow
+    color: $white
+  &__left_half
     padding-left: 5.85px
-  .right_half
+  &__right_half
     padding-left: 4.55px
 
-#main
+.main
   padding: 87px 92px 208px
-  .container 
+  &__container
     position: relative
     display: flex
     justify-content: center
-#main .title__wrapper
-  position: relative
-  margin-top: 50px
-#main .main_header
-  color: $yellow
-  font-family: Impact
-  font-size: clamp(80px, 25vw, 266.551px)
-  font-style: normal
-  font-weight: 400
-  line-height: normal
-  letter-spacing: -9.329px
-#main .main_header_caption
-  @include header_caption
+  &__content
+    position: relative
+    margin-top: 50px
+  &__title
+    font-size: clamp(80px, 25vw, 266.551px)
+    letter-spacing: -9.329px
+  &__caption
+    white-space: pre
+    line-height: 127%
+    letter-spacing: 0.17px
+    margin-bottom: 29px
+  &__bottle-top
+    @include flex_center
 
-  white-space: pre
-  line-height: 127%
-  letter-spacing: 0.17px
-  margin-bottom: 29px
-#main .bottle_wrapper
-  @include flex_center
-
-  top: -25px
-  position: absolute
-  left: 0
-  right: 0
-  margin: 0 auto
-  pointer-events: none
-  .bottle_top
+    top: -25px
+    position: absolute
+    left: 0
+    right: 0
+    margin: 0 auto
+    pointer-events: none
+  &__bottle-top-inner
     width: clamp(230px, 55vw, 598.125px)
     transform: rotate(8.508deg)
     max-width: initial
     flex-shrink: 0
+  &__spiral-top
+    position: absolute
+    top: 0
+    left: 0
+    transition: 1s
+    transform: translateX(0)
+    z-index: -1
+  &__spiral-right
+    position: absolute
+    top: 240px
+    right: 0
 
-#story 
+.story 
   scroll-margin-top: 100px
-  .spiral
-    margin-left: 20px
-  .story_header_caption
-    @include header_caption
-    margin-top: 20px
+  margin-bottom: 121px
+  &__title
+    font-size: clamp(41.95px, 13vw, 120px)
+    text-transform: uppercase
+    margin-bottom: 20px
+  &__caption
     max-width: 532px
+  &__spiral
+    margin-left: 20px
 
-#quality
-  margin-top: 121px
+.quality
+  margin-bottom: 214px
   scroll-margin-top: 120px
-  .container 
+  &__container
     position: relative
-#quality .bottle_middle
-  position: absolute
-  top: 0
-  left: -123px
-  object-fit: contain
-  min-width: 524.55px
-  height: 524.55px
-  pointer-events: none
-  &.scroll_hidden
-    transition-delay: 0.5s
-    transform: rotate(8.508deg) translateX(-100px)
-  &.scroll_shown
-    transform: rotate(8.508deg) translateX(0px)
-#quality .spiral_center
-  position: relative
-  top: 104px
-  left: 157px
-#quality .cards
+  &__bottle-middle
+    position: absolute
+    top: 0
+    left: -123px
+    object-fit: contain
+    min-width: 524.55px
+    height: 524.55px
+    pointer-events: none
+    &.scroll_hidden
+      transition-delay: 0.5s
+      transform: rotate(8.508deg) translateX(-100px)
+    &.scroll_shown
+      transform: rotate(8.508deg) translateX(0px)
+  &__spiral-center
+    position: relative
+    top: 104px
+    left: 157px
+.cards
   position: relative
   height: 600px
   margin-left: 303px
-#quality .card
+.card
   position: absolute
   display: flex
   flex-direction: column
@@ -201,7 +197,7 @@ body
     left: 280px
     transform: rotate(0deg)
     
-  .title
+  &__title
     color: #FFF
     font-family: Montserrat
     font-size: 18px
@@ -209,7 +205,7 @@ body
     font-weight: 700
     line-height: normal
     margin: 7.28px 0
-  .text
+  &__text
     color: #FFF
     text-align: center
     font-family: Montserrat
@@ -239,15 +235,38 @@ body
     transform: rotate(3.247deg)
     transition-delay: 800ms
 
-#order
+.order
   position: relative
-  margin: 214px 0 121px
+  margin-bottom: 121px
   scroll-margin-top: 100px
-  .container
+  &__container
     overflow: hidden
-  .content
-    position: relative
-#order .order_form
+  &__title
+    font-size: clamp(41.95px, 13vw, 120px)
+    text-transform: uppercase
+  &__spiral-bottom
+    position: absolute
+    top: 0
+    left: 0
+    z-index: -1
+  &__bottle-bottom
+    display: flex
+    justify-content: center
+    align-items: center
+  &__bottle-bottom-inner
+    display: block
+    position: absolute
+    top: -140px
+    right: -360px
+    min-width: 949.06px
+    height: 949.06px
+    z-index: -1
+    &.scroll_hidden
+      transition-delay: 0.5s
+      transform: rotate(-80.68deg) translateY(20%)
+    &.scroll_shown
+      transform: rotate(-80.68deg) translateY(0px)
+.form
   margin-top: 40px
   display: flex
   flex-direction: column
@@ -257,7 +276,7 @@ body
   &.scroll_hidden:not(.scroll_shown) *
     opacity: 0
     transform: translateX(-50px)
-#order .order_input, .order_textarea
+.order_input, .order_textarea
   color: $midgrey
   width: clamp(263px, 80vw, 438px)
   height: 50px
@@ -289,32 +308,10 @@ body
     transition-delay: 800ms
   &:nth-child(6)
     transition-delay: 1000ms
-#order .order_textarea
+.order_textarea
   height: 150px
   line-height: normal
   resize: none
-#order .spiral_bottom
-  position: absolute
-  top: 0
-  left: 0
-  z-index: -1
-#order .bottle_bottom
-  display: block
-  position: absolute
-  top: -140px
-  right: -360px
-  min-width: 949.06px
-  height: 949.06px
-  z-index: -1
-  &.scroll_hidden
-    transition-delay: 0.5s
-    transform: rotate(-80.68deg) translateY(20%)
-  &.scroll_shown
-    transform: rotate(-80.68deg) translateY(0px)
-#order .bottle_bottom_wrapper
-    display: flex
-    justify-content: center
-    align-items: center
 
 .footer
   display: flex
@@ -323,7 +320,7 @@ body
   justify-content: center
   align-items: center
   flex-shrink: 0
-  background: #E0AB21
+  background: $yellow
 
   color: #FFF
   font-family: Montserrat
@@ -332,80 +329,28 @@ body
   font-weight: 500
   line-height: normal
 
-#order, #story
-  .title
-    @include title
-.order_button
+.order-button
+  @include flex_center
+
   display: inline-flex
   cursor: pointer
   margin-right: auto
-  .order_text
-    @include flex_center
 
-    width: 180px
-    height: 48px
-    flex-shrink: 0
-    border-radius: 50px
-    background: $yellow
+  width: 180px
+  height: 48px
+  flex-shrink: 0
+  border-radius: 50px
+  background: $yellow
 
-    color: $white
-    font-family: Montserrat
-    font-size: 17px
-    font-style: normal
-    font-weight: 800
-    line-height: normal
-    text-transform: uppercase
-    &:hover
-      background: transparentize($yellow, 0.2)
-
-
-.spiral_top
-  position: absolute
-  top: 0
-  left: 0
-  transition: 1s
-  transform: translateX(0)
-  z-index: -1
-  &.hidden
-    opacity: 0
-    transform: translateX(-100%)
-.spiral_right
-  position: absolute
-  top: 240px
-  right: 0
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button 
-  -webkit-appearance: none
-  margin: 0
-
-.scroll_hidden
-  opacity: 0
-  transition: 1s
-  &.from_left1
-    transform: translateX(-10px)
-  &.from_left2
-    transform: translateX(-50px)
-  &.from_left3
-    transform: translateX(-100%)
-  &.rotate
-    transform: rotate(180deg)
-  
-.scroll_shown 
-  opacity: 1
-  &:not(.rotate)
-    transform: translateX(0)
-  &.rotate
-    transform: rotate(0deg)
-
-@media( prefers-reduced-motion )
-  .scroll_hidden
-    transition: none
-
-.container 
-  margin: 0 auto
-  padding-left: 30px
-  padding-right: 30px
+  color: $white
+  font-family: Montserrat
+  font-size: 17px
+  font-style: normal
+  font-weight: 800
+  line-height: normal
+  text-transform: uppercase
+  &:hover
+    background: transparentize($yellow, 0.2)
 
 //Adaptation
 @media screen and (min-width: 1200px)
@@ -419,52 +364,55 @@ input::-webkit-inner-spin-button
 @media screen and (max-width: 1024px)
   .container 
     max-width: 768px
-  #main 
-    .main_header_caption
-      margin-top: clamp(120px, 20vw, 210px)
-  .spiral_right
-    height: 400px
-    top: 380px
-  #order 
-    margin: 50px 0 121px
-    .bottle_bottom_wrapper
+  .quality__container
+    display: flex
+    flex-direction: column-reverse
+    justify-content: center
+  .order__content 
+    display: flex
+    flex-direction: column
+    align-items: center
+  .main__caption
+    margin-top: clamp(120px, 20vw, 210px)
+
+  .language_switch
+    right: 30px
+
+  .main
+    &__spiral-right
+      height: 400px
+      top: 380px
+
+  .quality
+    margin-bottom: 50px
+    &__bottle-middle
+      position: initial
+  .cards 
+    margin-left: -35px
+   
+  .order 
+    &__bottle-bottom
       height: 300px
       img 
         object-fit: contain
-    .bottle_bottom
+    &__bottle-bottom-inner
       position: initial
       min-width: initial
       height: 400px
       scale: 1.5
-    .content 
-      display: flex
-      flex-direction: column
-      align-items: center
-  #quality
-    .container
-      display: flex
-      flex-direction: column-reverse
-      justify-content: center
-    .cards 
-      margin-left: -35px
-    .bottle_middle
-      position: initial
+
 @media screen and (max-width: 768px)
   .container 
     max-width: 576px
-  .spiral_top
-    display: none
-  #main 
-    .title__wrapper
-      margin-top: 50px
-    .main_header
-      letter-spacing: -3.436px
-  .spiral_right
-    height: 296.067px
-  #nav 
+  .header__container
+    height: 30px
+    margin: 0
+    padding-left: 30px
+  .main__title
+    letter-spacing: -3.436px
+
+  .nav
     position: fixed
-    justify-content: flex-start
-    flex-direction: column
     top: 0
     left: 0
     height: 100vh
@@ -474,122 +422,136 @@ input::-webkit-inner-spin-button
     background-color: $yellow
     transform: translate(-100%)
     transition: transform 0.5s
-    &.open 
+    &__list
+      justify-content: flex-start
+      flex-direction: column
+    &_open
       transform: translate(0)
-    .nav_item,
-    .nav_item.active,
-    .nav_item:hover
+    &__item,
+    &__item_active,
+    &__item:hover
       color: white
-    .nav_item
+    &__item
       margin: 0 auto
-  .header 
-    .container
-      height: 30px
-    .menu__btn
-      display: flex
-      z-index: 1
-      svg,
-      path
-        transition: all 0.5s
+  .menu-button
+    display: flex
+    z-index: 1
+    svg,
+    path
+      transition: all 0.5s
+    svg 
+      width: 60px
+    &_active
+      position: fixed
+      top: 50px
       svg 
-        width: 60px
-      &.close 
-        position: fixed
-        top: 50px
-        svg 
-          path
-            stroke: white
-            stroke-width: 3
-          &:nth-child(1),
-          &:nth-child(3)
-            width: 50px
+        path
+          stroke: white
+          stroke-width: 3
+        &:nth-child(1),
+        &:nth-child(3)
+          width: 50px
 
-          &:nth-child(1)
-            rotate: 45deg
+        &:nth-child(1)
+          rotate: 45deg
 
-          &:nth-child(2)
-            display: none
-          
-          &:nth-child(3)
-            rotate: -45deg
-            position: absolute
-            transform: translate(-1px, -1px)
-  #quality
-    margin-top: 0 
-    .cards 
-      margin-left: -120px
-      scale: 0.7 
-      height: 500px
-  #order 
-    margin: 50px 0 0
+        &:nth-child(2)
+          display: none
+        
+        &:nth-child(3)
+          rotate: -45deg
+          position: absolute
+          transform: translate(-1px, -1px)
+  .language-switch
+    right: 30px
+
+  .main
+    &__spiral-top
+      display: none
+    &__spiral-right
+      height: 296.067px
+
+  .story
+    margin-bottom: 0 
+  .cards 
+    margin-left: -120px
+    scale: 0.7 
+    height: 500px
+    
+  .order 
+    margin-bottom: 0
 
 @media screen and (max-width: 576px)
   .container 
     max-width: 100%
-  #main
+  .quality__container 
+    align-items: center
+  .caption
+    font-size: 13px
+  .main__caption
+    font-size: 15px
+
+  .main
     padding: 87px 92px 300px
-  #story 
-    .title
+
+  .story
+    &__title
       display: flex
       align-items: center
-    .spiral
+    &__spiral
       width: 60.787px
       height: 64.424px
-  #quality
-    .container 
-      align-items: center
-    .cards
-      position: relative
-      display: flex
-      justify-content: center
-      flex-direction: column
-      gap: 30px
-      height: 700px
-      margin-left: 0
-      .card 
-        position: initial
-        top: 0
-        left: 0
-        &:nth-child(odd)
-          transform: rotate(5deg)
-        &:nth-child(even)
-          transform: rotate(-5deg)
-      .spiral_center
-        position: absolute
-        top: auto
-        left: auto
-        scale: 2.5
-        rotate: 80deg
-    .bottle_middle
+
+  .quality
+    &__spiral-center
+      position: absolute
+      top: auto
+      left: auto
+      scale: 2.5
+      rotate: 80deg
+    &__bottle-middle
       width: 297.495px
       height: 297.495px 
+  .cards
+    position: relative
+    display: flex
+    justify-content: center
+    flex-direction: column
+    gap: 30px
+    height: 700px
+    margin-left: 0
+  .card 
+    position: initial
+    top: 0
+    left: 0
+    &:nth-child(odd)
+      transform: rotate(5deg)
+    &:nth-child(even)
+      transform: rotate(-5deg)
           
-  .main_header_caption
-    font-size: 15px
-  #order 
-    .spiral_bottom
+  .order 
+    &__spiral-bottom
       width: 198.805px
       height: 210.7px
       top: 20%
-    .bottle_bottom_wrapper
+    &__bottle-bottom
       height: 200px
-    .bottle_bottom
+    &__bottle-bottom-inner
       scale: 1
-    .order_form
-      row-gap: 18px
-    .order_input,
-    .order_textarea
-      height: 34px
-      padding: 9px
-      font-size: 12px
-      line-height: 19.215px
-      &:nth-last-child(2)
-        margin-bottom: 18px
-    .order_textarea
-      height: 100px
-  .order_button 
+  .form
+    row-gap: 18px
+  .order_input, .order_textarea
+    height: 34px
+    padding: 9px
+    font-size: 12px
+    line-height: 19.215px
+    &:nth-last-child(2)
+      margin-bottom: 18px
+  .order_textarea
+    height: 100px
+
+  .order-button
     margin: 0 auto
-    .order_text
-      font-size: 13px
-      width: 138.158px
-      height: 36.842px
+    font-size: 13px
+    width: 138.158px
+    height: 36.842px

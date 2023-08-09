@@ -15,12 +15,12 @@ function checkSectionsScroll (sections, navLinks) {
     let id = section.getAttribute("id");
     if (top >= offset && offset + height) {
       navLinks.forEach(link => {
-        link.classList.remove("active");
+        link.classList.remove("nav__item_active");
       });
       
       document
         .querySelector("nav a[href*=" + id + "]")
-        .classList.add("active");
+        .classList.add("nav__item_active");
     }
   });
 }

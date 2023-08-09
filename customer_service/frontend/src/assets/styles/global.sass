@@ -1,0 +1,38 @@
+@import "./variables"
+
+*
+  scroll-behavior: smooth
+
+body 
+  background: $background
+  &.overlay
+    overflow: hidden
+#root
+  overflow: hidden
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button 
+  -webkit-appearance: none
+  margin: 0
+
+.scroll_hidden
+  opacity: 0
+  transition: 1s
+  &.from_left1
+    transform: translateX(-10px)
+  &.from_left2
+    transform: translateX(-50px)
+  &.from_left3
+    transform: translateX(-100%)
+  &.rotate
+    transform: rotate(180deg)
+.scroll_shown 
+  opacity: 1
+  &:not(.rotate)
+    transform: translateX(0)
+  &.rotate
+    transform: rotate(0deg)
+
+@media( prefers-reduced-motion )
+  .scroll_hidden
+    transition: none

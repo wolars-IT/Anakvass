@@ -4,9 +4,9 @@ function watchNavbarScroll() {
 
   window.addEventListener("scroll", () => {
     if (window.pageYOffset >= sticky) {
-      header.classList.add("fixed");
+      header.classList.add("header_fixed");
     } else {
-      header.classList.remove("fixed");
+      header.classList.remove("header_fixed");
     }
   });
 }

@@ -5,6 +5,7 @@ import App from "./App.jsx";
 import "./assets/scripts/i18n.js"
 
 import "./assets/styles/stylereset.sass";
+import "./assets/styles/global.sass";
 import "./assets/styles/style.sass";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
