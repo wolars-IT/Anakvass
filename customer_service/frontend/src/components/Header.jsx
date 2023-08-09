@@ -3,8 +3,9 @@ import { useTranslation } from "react-i18next";
 import classNames from 'classnames';
 
 export default function Header({lngs, setLng}) {
-  const [showMenu, setShowMenu] = useState(false);
   const { t } = useTranslation();
+
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     const localLanguage = window.localStorage.getItem('language')
@@ -25,24 +26,6 @@ export default function Header({lngs, setLng}) {
       name: t("nav." + item.id)
     }
   });
-
-  let leftLngButtonClassNames = classNames("switch_half", "left_half", {
-    active: lngs[0].isActive,
-  });
-  let rightLngButtonClassNames = classNames("switch_half", "right_half", {
-    active: lngs[1].isActive,
-  });
-
-  function changeLanguage(lng) {
-    setLng(lng);
-    window.localStorage.setItem('language', JSON.stringify(lng));
-  }
-
-  const toggleMenu = () => {
-    setShowMenu(prev => !prev);
-    document.body.classList.toggle('overlay');
-  }
-
   const navigationList = navigation.map(navItem => {
     return (
       <a
@@ -56,9 +39,24 @@ export default function Header({lngs, setLng}) {
     )
   })
 
+  const changeLanguage = (lng) => {
+    setLng(lng);
+    window.localStorage.setItem('language', JSON.stringify(lng));
+  }
+  const toggleMenu = () => {
+    setShowMenu(prev => !prev);
+    document.body.classList.toggle('overlay');
+  }
+
   const navClasses = classNames({"open": showMenu});
   const menuBtnClasses = classNames("menu__btn", {"close": showMenu});
-
+  const leftLngButtonClassNames = classNames("switch_half", "left_half", {
+    active: lngs[0].isActive,
+  });
+  const rightLngButtonClassNames = classNames("switch_half", "right_half", {
+    active: lngs[1].isActive,
+  });
+  
   return (
     <header className="header">
       <div className="container">

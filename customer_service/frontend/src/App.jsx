@@ -20,22 +20,22 @@ import bubbles from "./assets/svg/bubbles.svg";
 import bottle from "./assets/img/bottle.png"
 
 function App() {
+  const { t, i18n } = useTranslation();
+
   const [lngs, setLngs] = useState([
     {code: "uk", isActive: true},
     {code: "en", isActive: false}
   ]);
-
-  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     watchNavbarScroll()
     watchSectionsScroll()
     watchAnimationsOnScroll()
   }, []);
-
-  function setLng(code) {
+  
+  const setLng = (lngCode) => {
     const nextLngs = lngs.map((lng) => {
-      if (lng.code == code) {
+      if (lng.code == lngCode) {
         return {
           ...lng,
           isActive: true
@@ -47,7 +47,7 @@ function App() {
       }
     })
 
-    i18n.changeLanguage(code);
+    i18n.changeLanguage(lngCode);
     setLngs(nextLngs)
   }
 
@@ -63,11 +63,11 @@ function App() {
         <div className="container">
           <div className="content">
             <div className="title__wrapper">
-                <div id="bottle_wrapper">
-                <img src={bottle} id="bottle_top" />
-                </div>
+              <div id="bottle_wrapper">
+              <img src={bottle} id="bottle_top" />
+              </div>
 
-                <h1 id="main_header">{t("main.header")}</h1>
+              <h1 id="main_header">{t("main.header")}</h1>
             </div>
             <div id="main_header_caption">{t("main.headerCaption")}</div>
             <a className="order_button" href="#order">
