@@ -364,33 +364,33 @@
 @media screen and (max-width: 1024px)
   .container 
     max-width: 768px
-  .quality__container
-    display: flex
-    flex-direction: column-reverse
-    justify-content: center
-  .order__content 
-    display: flex
-    flex-direction: column
-    align-items: center
-  .main__caption
-    margin-top: clamp(120px, 20vw, 210px)
 
   .language_switch
     right: 30px
 
   .main
+    &__caption
+      margin-top: clamp(120px, 20vw, 210px)
     &__spiral-right
       height: 400px
       top: 380px
 
   .quality
     margin-bottom: 50px
+    &__container
+      display: flex
+      flex-direction: column-reverse
+      justify-content: center
     &__bottle-middle
       position: initial
   .cards 
     margin-left: -35px
    
-  .order 
+  .order
+    &__content 
+      display: flex
+      flex-direction: column
+      align-items: center
     &__bottle-bottom
       height: 300px
       img 
@@ -404,13 +404,12 @@
 @media screen and (max-width: 768px)
   .container 
     max-width: 576px
-  .header__container
-    height: 30px
-    margin: 0
-    padding-left: 30px
-  .main__title
-    letter-spacing: -3.436px
 
+  .header
+    &__container
+      height: 30px
+      margin: 0
+      padding-left: 30px
   .nav
     position: fixed
     top: 0
@@ -466,6 +465,8 @@
     right: 30px
 
   .main
+    &__title
+      letter-spacing: -3.436px
     &__spiral-top
       display: none
     &__spiral-right
@@ -484,15 +485,13 @@
 @media screen and (max-width: 576px)
   .container 
     max-width: 100%
-  .quality__container 
-    align-items: center
   .caption
     font-size: 13px
-  .main__caption
-    font-size: 15px
 
   .main
     padding: 87px 92px 300px
+    &__caption
+      font-size: 15px
 
   .story
     &__title
@@ -503,6 +502,8 @@
       height: 64.424px
 
   .quality
+    &__container 
+      align-items: center
     &__spiral-center
       position: absolute
       top: auto
