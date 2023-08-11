@@ -74,6 +74,7 @@
     width: 26px
     display: flex
     align-items: center
+    justify-content: center
 
     font-family: Montserrat
     font-size: 9.75px
@@ -88,13 +89,13 @@
     &:hover
       opacity: 0.8
       color: $white
+    &:nth-child(1)
+      padding-left: 1px
+    &:nth-child(2)
+      padding-right: 2px
   &__half_active
     background: $yellow
     color: $white
-  &__left_half
-    padding-left: 5.85px
-  &__right_half
-    padding-left: 4.55px
 
 .main
   padding: 87px 92px 208px
